@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Box } from '@mui/material'
 import AddressForm from '../components/AddressForm'
-import Checkout from '../components/Checkout'
+import Report from '../components/Report'
 import Navbar from '../components/Navbar'
 
 export class ReportPage extends Component {
@@ -10,7 +10,7 @@ export class ReportPage extends Component {
             <React.Fragment>
                 <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "80vh" }}>
                     <Navbar />
-                    <Checkout />
+                    <Report />
                 </Box>
             </React.Fragment>
         )

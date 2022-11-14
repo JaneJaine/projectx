@@ -3,17 +3,20 @@ import { Box, Container, Paper, Stepper, Step, StepLabel, Button, Link, Typograp
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
 import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
+import PersonalForm from './PersonalForm';
+import DetailForm from './DetailForm';
 import Review from './Review';
 import Background from '../media/wallpaperFrankfurt.jpg';
-const steps = ['Ortsangabe', 'Details', 'Bestätigung'];
+const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
-      return <PaymentForm />;
+      return <DetailForm />;
+    case 3:
+      return <PersonalForm />
     case 2:
       return <Review />;
     default:

@@ -38,11 +38,11 @@ const Hero = () => {
                     <CustomBox>
                         <Box sx={{ flex: "1" }}>
                             <Typography variant="body2" sx={{ fontSize: "18px", color: "#687690", fontWeight: "500", mt: 10, mb: 4 }}>
-                                Mangelmelder Mannheim
+                                Mangelmelder Frankfurt
                             </Typography>
                             <Title variant='h1' >Helfen Sie uns, eine schöne Stadt zu erhalten!</Title>
                             <Typography variant='body2' sx={{ fontSize: "18px", color: "#5A6473", my: 4 }}>
-                                Melden Sie jetzt Defekte, Verschmutzungen oder Verstöße an die Stadt Mannheim. Unkompliziert und schnell!
+                                Melden Sie jetzt Defekte, Verschmutzungen oder Verstöße an die Stadt Frankfurt. Unkompliziert und schnell!
                             </Typography>
                             <Link to="/report" style={{textDecoration: 'none'}}>
                                 <CustomButton
