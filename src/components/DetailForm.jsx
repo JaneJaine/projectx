@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Autocomplete, TextField, Typography, Grid } from '@mui/material';
 
 export default function AddressForm() {
+
   const detailOptions = [
     'Defekt', 'Verschmutzung', 'Parkverstoß', 'Anderes'
   ]
   return (
     <React.Fragment>
-      {/* <MapComp /> */}
       <Typography variant="h6" gutterBottom>
         Details zum Mangel
       </Typography>
@@ -19,6 +19,14 @@ export default function AddressForm() {
             options={detailOptions}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Mangelart" />}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="outlined-required-multiline"
+            label="Beschreibung"
+            placeholder="Bitte geben Sie eine Beschreibung ein"
           />
         </Grid>
       </Grid>

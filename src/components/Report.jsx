@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Box, Container, Paper, Stepper, Step, StepLabel, Button, Link, Typography, MobileStepper, StepContent } from '@mui/material'
+import { Box, Container, Paper, Stepper, Step, StepLabel, Button, Typography, StepContent } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
 import AddressForm from './AddressForm';
@@ -55,8 +55,6 @@ export default function Checkout() {
       window.removeEventListener('resize', handleWindowSizeChange);
     }
   }, []);
-
-  const isMobile = width <= 768;
 
   return (
     <CustomBox>
