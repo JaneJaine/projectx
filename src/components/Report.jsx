@@ -7,9 +7,7 @@ import FormLocation from './FromLocation';
 import PersonalForm from './FormPersonal';
 import DetailForm from './FormDetails';
 import Review from './FormReview';
-import { multiStepContext } from '../providers/StepContext';
 import Background from '../media/wallpaperFrankfurt.jpg';
-import { useContext } from 'react';
 
 
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];

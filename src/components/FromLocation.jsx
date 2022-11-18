@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
+import {Grid, Typography, TextField, FormControlLabel, Switch} from '@mui/material';
 import MapView from './MapView';
-import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from 'react-leaflet';
 
 export default function AddressForm() {
 

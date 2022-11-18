@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from 'react-leaflet';
-import { Alert, Dialog, Typography } from '@mui/material';
+import {Typography } from '@mui/material';
 
 export default function MapView() {
   function LocationMarker() {
