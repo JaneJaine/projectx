@@ -1,5 +1,4 @@
-import * as React from "react";
-import {Box, Typography} from "@mui/material";
+import React, {useState} from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import HomeIcon from "@mui/icons-material/Home";
@@ -13,9 +12,10 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    Box,
+    Typography,
     styled,
 } from "@mui/material";
-import { useState } from "react";
 import Login from "./Login";
 
 export const Navbar = () => {
