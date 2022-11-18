@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { Box, Container, Paper, Stepper, Step, StepLabel, Button, Typography, StepContent } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
-import AddressForm from './AddressForm';
-import PersonalForm from './PersonalForm';
-import DetailForm from './DetailForm';
-import Review from './Review';
+import FormLocation from './FromLocation';
+import PersonalForm from './FormPersonal';
+import DetailForm from './FormDetails';
+import Review from './FormReview';
 import { multiStepContext } from '../providers/StepContext';
 import Background from '../media/wallpaperFrankfurt.jpg';
 import { useContext } from 'react';
@@ -17,7 +17,7 @@ const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <FormLocation />;
     case 1:
       return <DetailForm />;
     case 2:
