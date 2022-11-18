@@ -1,8 +1,11 @@
 import * as React from "react";
-import {Box, Typography} from "@mui/material/Box";
-import {MenuIcon, FeaturedPlayListIcon, HomeIcon, ContactsIcon} from "@mui/icons-material";
-import { Container } from "@mui/system";
+import {Box, Typography} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
+import HomeIcon from "@mui/icons-material/Home";
+import ContactsIcon from "@mui/icons-material/Contacts";
 import logoImg from "../media/Frankfurt_am_Main_logo_small.png";
+import { Container } from "@mui/system";
 import {
     Drawer,
     List,
