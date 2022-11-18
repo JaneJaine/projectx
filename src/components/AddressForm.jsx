@@ -1,16 +1,19 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import MapView from './MapView';
+import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from 'react-leaflet';
 
 export default function AddressForm() {
 
-  const [checked, setChecked] = React.useState(false)
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked)
+  const [checked, setChecked] = useState(false);
+  const [mapLabel, setLabel] = useState(true)
+  const handleChange = (e) => {
+    setChecked(e.target.checked)
+    setLabel(mapLabel => !mapLabel)
   }
   return (
     <React.Fragment>
@@ -61,9 +64,10 @@ export default function AddressForm() {
         </React.Fragment>
       )}
       <Grid item xs={12}>
-        <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} label="Auf Map auswählen" />
+        <FormControlLabel
+          control={<Switch checked={checked} onChange={handleChange} />}
+          label={mapLabel ? "Auf Map auswählen" : "Manuell eingeben"} />
       </Grid>
-
     </React.Fragment>
   );
 }

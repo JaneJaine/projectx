@@ -7,7 +7,9 @@ import AddressForm from './AddressForm';
 import PersonalForm from './PersonalForm';
 import DetailForm from './DetailForm';
 import Review from './Review';
+import { multiStepContext } from '../providers/StepContext';
 import Background from '../media/wallpaperFrankfurt.jpg';
+import { useContext } from 'react';
 
 
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
@@ -33,8 +35,10 @@ const CustomBox = styled(Box)(({ theme }) => ({
 }
 ));
 
-export default function Checkout() {
-  const [activeStep, setActiveStep] = React.useState(0);
+export default function Report() {
+
+  //const {currentStep, finalData} = useContext(multiStepContext);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
