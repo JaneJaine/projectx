@@ -45,6 +45,7 @@ export default function Report() {
   };
   const handleSubmit = e => {
     e.preventDefault();
+    alert("submitted");
     //Proccess Form Backend
 }
 //handle device width settings -> mobile or desktop view for stepper
