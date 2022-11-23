@@ -29,7 +29,7 @@ export default function Report() {
       case 2:
         return <PersonalForm data={data} setData={setData} />
       case 3:
-        return <Review data={data} setSubmitData={setSubmitData} />;
+        return <Review data={data} submitData={submitData} setSubmitData={setSubmitData} />;
       default:
         throw new Error('Unknown step');
     }
@@ -39,7 +39,7 @@ export default function Report() {
     street: '',
     strNr: '',
     zip: '',
-    typeString: 'Defekt',
+    typeS: 'Defekt',
     description: '',
     email: '',
     firstname: '',
@@ -55,7 +55,10 @@ export default function Report() {
 //handle final submit
   const handleSubmit = e => {
     e.preventDefault();
-    alert("submitted");
+    console.log(submitData.location);
+    console.log(submitData.description);
+    console.log(submitData.type);
+    alert("Data" + submitData.type + ' ' + submitData.description);
     //Proccess Form Backend
   }
   const [submitData, setSubmitData] = useState({

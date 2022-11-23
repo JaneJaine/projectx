@@ -4,18 +4,16 @@ import Grid from '@mui/material/Grid';
 import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
+import { useEffect } from 'react';
 
 
-export default function Review({ data, setSubmitData }) {
-  const submitData = {
-    location: '',
-    type: '',
-    description: '',
-    userMail: '',
-    userName: '',
-  };
+export default function Review({ data, setSubmitData, submitData }) {
   const location = data.coordinates ? data.coordinates : data.street + ' ' + data.strNr + ', ' + data.zip;
   const userName = data.firstname + ' ' + data.lastname;
+  useEffect(() => {
+    console.log(data.type);
+    setSubmitData({ ...submitData, location: location, type: data.type, description: data.description, userMail: data.email, userName: userName  })
+  },[])
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -30,10 +28,7 @@ export default function Review({ data, setSubmitData }) {
               </ListItemIcon>
               <ListItemText
                 primary="Name"
-                secondary={
-                  <React.Fragment>
-                    <Typography> {userName} </Typography>
-                  </React.Fragment>}
+                secondary={userName}
               />
             </ListItem>
             <ListItem>
@@ -42,10 +37,7 @@ export default function Review({ data, setSubmitData }) {
               </ListItemIcon>
               <ListItemText
                 primary="Email"
-                secondary={
-                  <React.Fragment>
-                    <Typography> {data.email} </Typography>
-                  </React.Fragment>}
+                secondary={data.email}
               />
             </ListItem>
           </List>
@@ -58,10 +50,7 @@ export default function Review({ data, setSubmitData }) {
               </ListItemIcon>
               <ListItemText
                 primary="Mangelart"
-                secondary={
-                  <React.Fragment>
-                    <Typography> {data.type} </Typography>
-                  </React.Fragment>}
+                secondary={data.type}
               />
             </ListItem>
             <ListItem>
@@ -70,10 +59,7 @@ export default function Review({ data, setSubmitData }) {
               </ListItemIcon>
               <ListItemText
                 primary="Beschreibung"
-                secondary={
-                  <React.Fragment>
-                    <Typography> {data.description} </Typography>
-                  </React.Fragment>}
+                secondary={data.description}
               />
             </ListItem>
           </List>
@@ -85,10 +71,7 @@ export default function Review({ data, setSubmitData }) {
             </ListItemIcon>
             <ListItemText
               primary="Ortangabe"
-              secondary={
-                <React.Fragment>
-                  <Typography> {location} </Typography>
-                </React.Fragment>}
+              secondary={location}
             />
           </ListItem>
         </Grid>
