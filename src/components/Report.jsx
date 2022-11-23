@@ -35,19 +35,20 @@ const CustomBox = styled(Box)(({ theme }) => ({
 
 export default function Report() {
 
-  //const {currentStep, finalData} = useContext(multiStepContext);
+//handle steps and final submit of data
   const [activeStep, setActiveStep] = useState(0);
-
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
-
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
+  const handleSubmit = e => {
+    e.preventDefault();
+    //Proccess Form Backend
+}
+//handle device width settings -> mobile or desktop view for stepper
   const [width, setWidth] = useState(window.innerWidth);
-
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
@@ -95,10 +96,10 @@ export default function Report() {
                 Back
               </Button>
             )}
-            {activeStep === steps.length ? (
+            {activeStep === steps.length - 1 ? (
               <Button
                 variant="contained"
-                onClick={handleNext}
+                onClick={handleSubmit}
                 sx={{ mt: 3, ml: 1 }}
               >Absenden</Button>
             ) : (
