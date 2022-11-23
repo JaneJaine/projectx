@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import {Grid, Typography, TextField, FormControlLabel, Switch} from '@mui/material';
+import { Grid, Typography, TextField, FormControlLabel, Switch } from '@mui/material';
 import MapView from './MapView';
 
-export default function AddressForm() {
+export default function FormLocation({ data, setData }) {
 
   const [checked, setChecked] = useState(false);
   const [mapLabel, setLabel] = useState(true)
@@ -10,7 +10,7 @@ export default function AddressForm() {
     setChecked(e.target.checked)
     setLabel(mapLabel => !mapLabel)
   }
-  return ( 
+  return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Ortsangabe
@@ -25,34 +25,33 @@ export default function AddressForm() {
             <Grid item xs={12}>
               <TextField
                 required
-                id="address"
-                name="address"
+                id="street"
                 label="Addresse"
                 fullWidth
-                autoComplete="address"
                 variant="standard"
+                value={data.street}
+                onChange={(e) => setData({ ...data, street: e.target.value })}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                id="number"
-                name="number"
+                id="streetNr"
                 label="Hausnummer"
                 fullWidth
-                autoComplete="number"
                 variant="standard"
+                value={data.strNr}
+                onChange={(e) => setData({ ...data, strNr: e.target.value })}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required
                 id="zip"
-                name="zip"
                 label="PLZ"
                 fullWidth
-                autoComplete="shipping postal-code"
                 variant="standard"
+                value={data.zip}
+                onChange={(e) => setData({ ...data, zip: e.target.value })}
               />
             </Grid>
           </Grid>

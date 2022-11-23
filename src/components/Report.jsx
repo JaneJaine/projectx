@@ -23,13 +23,13 @@ export default function Report() {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <FormLocation />;
+        return <FormLocation data={data} setData={setData} />;
       case 1:
-        return <DetailForm />;
+        return <DetailForm data={data} setData={setData} />;
       case 2:
         return <PersonalForm data={data} setData={setData} />
       case 3:
-        return <Review />;
+        return <Review data={data}  />;
       default:
         throw new Error('Unknown step');
     }
@@ -37,9 +37,10 @@ export default function Report() {
   const [data, setData] = useState({
     coordinates: '',
     street: '',
-    streetNr: '',
+    strNr: '',
     zip: '',
-    type: '',
+    typeInt: 0,
+    typeString: '',
     description: '',
     email: '',
     firstname: '',
