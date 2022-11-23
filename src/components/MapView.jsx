@@ -12,7 +12,6 @@ export default function MapView({data, setData}) {
       locationfound(e) {
         setPosition(e.latlng)
         setData({...data, coordinates: String(e.latlng)})
-        console.log("coordinates: " + data.coordinates)
         map.flyTo(e.latlng, map.getZoom())
       },
       locationerror(e){

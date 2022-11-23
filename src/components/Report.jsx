@@ -29,7 +29,7 @@ export default function Report() {
       case 2:
         return <PersonalForm data={data} setData={setData} />
       case 3:
-        return <Review data={data}  />;
+        return <Review data={data} setSubmitData={setSubmitData} />;
       default:
         throw new Error('Unknown step');
     }
@@ -52,11 +52,19 @@ export default function Report() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+//handle final submit
   const handleSubmit = e => {
     e.preventDefault();
     alert("submitted");
     //Proccess Form Backend
   }
+  const [submitData, setSubmitData] = useState({
+    location: '',
+    type: '',
+    description: '',
+    userMail: '',
+    userName: '',
+  });
 
   //handle device width settings -> mobile or desktop view for stepper
   const [width, setWidth] = useState(window.innerWidth);
