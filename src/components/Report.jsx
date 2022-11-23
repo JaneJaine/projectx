@@ -95,13 +95,19 @@ export default function Report() {
                 Back
               </Button>
             )}
-            <Button
-              variant="contained"
-              onClick={handleNext}
-              sx={{ mt: 3, ml: 1 }}
-            >
-              {activeStep === steps.length - 1 ? 'Absenden' : 'Next'}
-            </Button>
+            {activeStep === steps.length ? (
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                sx={{ mt: 3, ml: 1 }}
+              >Absenden</Button>
+            ) : (
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                sx={{ mt: 3, ml: 1 }}
+              >Weiter</Button>
+            )}
           </Box>
         </Paper>
       </Container>
