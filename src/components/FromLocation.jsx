@@ -17,7 +17,7 @@ export default function FormLocation({ data, setData }) {
       </Typography>
       {checked ? (
         <React.Fragment>
-          <MapView />
+          <MapView data={data} setData={setData} />
         </React.Fragment>
       ) : (
         <React.Fragment>

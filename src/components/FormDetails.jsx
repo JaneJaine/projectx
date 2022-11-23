@@ -6,8 +6,7 @@ export default function AddressForm({ data, setData }) {
   const detailOptions = [
     'Defekt', 'Verschmutzung', 'Parkverstoß', 'Anderes'
   ]
-  const [value, setValue] = React.useState(detailOptions[data.typeInt]);
-  const [inputValue, setInputValue] = React.useState('');
+  const [inputValue, setInputValue] = React.useState('a');
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -21,13 +20,13 @@ export default function AddressForm({ data, setData }) {
             options={detailOptions}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Mangelart" />}
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
+            value={data.typeString}
+            onChange={(e, newValue) => {
+              setData({...data, typeString: newValue})
             }}
-            inputValue={data.typeString}
-            onInputChange={(e, newInputValue) => {
-              setData({...data, typeString: newInputValue});
+            inputValue={inputValue}
+            onInputChange={(event, newInputValue) => {
+              setInputValue(newInputValue);
             }}
             /* 
             value={detailOptions[data.type]}

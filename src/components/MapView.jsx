@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from 'react-leaflet';
 import {Typography } from '@mui/material';
 
-export default function MapView() {
+export default function MapView({data, setData}) {
   function LocationMarker() {
     const [position, setPosition] = useState(null)
     const map = useMapEvents({
@@ -11,6 +11,8 @@ export default function MapView() {
       },
       locationfound(e) {
         setPosition(e.latlng)
+        setData({...data, coordinates: String(e.latlng)})
+        console.log("coordinates: " + data.coordinates)
         map.flyTo(e.latlng, map.getZoom())
       },
       locationerror(e){
