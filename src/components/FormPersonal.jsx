@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 
-export default function PaymentForm() {
+export default function PaymentForm({data, setData}) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -19,6 +19,8 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            value={data.firstname}
+            onChange={(e)=>setData({...data, firstname: e.target.value})}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -30,6 +32,8 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            value={data.lastname}
+            onChange={(e)=>setData({...data, lastname: e.target.value})}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -41,6 +45,8 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="name@mail.de"
             variant="standard"
+            value={data.email}
+            onChange={(e)=>setData({...data, email: e.target.value})}
           />
         </Grid>
       </Grid>

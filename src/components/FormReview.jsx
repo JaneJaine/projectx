@@ -10,7 +10,7 @@ export default function Review() {
         Bitte überprüfen sie Ihre Eingaben
       </Typography>
       <Grid container spacing={2}>
-        
+        <Typography>Name: </Typography>
       </Grid>
     </React.Fragment>
   );

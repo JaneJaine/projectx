@@ -12,21 +12,6 @@ import Background from '../media/wallpaperFrankfurt.jpg';
 
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <FormLocation />;
-    case 1:
-      return <DetailForm />;
-    case 2:
-      return <PersonalForm />
-    case 3:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
-
 const CustomBox = styled(Box)(({ theme }) => ({
   backgroundImage: "url(" + Background + ")",
   minHeight: "80vh",
@@ -34,8 +19,32 @@ const CustomBox = styled(Box)(({ theme }) => ({
 ));
 
 export default function Report() {
-
-//handle steps and final submit of data
+  //handle steps and final submit of data
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <FormLocation />;
+      case 1:
+        return <DetailForm />;
+      case 2:
+        return <PersonalForm data={data} setData={setData} />
+      case 3:
+        return <Review />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
+  const [data, setData] = useState({
+    coordinates: '',
+    street: '',
+    streetNr: '',
+    zip: '',
+    type: '',
+    description: '',
+    email: '',
+    firstname: '',
+    lastname: '',
+  });
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -47,8 +56,9 @@ export default function Report() {
     e.preventDefault();
     alert("submitted");
     //Proccess Form Backend
-}
-//handle device width settings -> mobile or desktop view for stepper
+  }
+
+  //handle device width settings -> mobile or desktop view for stepper
   const [width, setWidth] = useState(window.innerWidth);
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
