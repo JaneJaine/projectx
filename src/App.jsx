@@ -1,7 +1,6 @@
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import Hero from './components/Hero';
 import NoMatch from './pages/NoMatch';
 import Home from './pages/Home';
 import ReportPage from './pages/ReportPage';

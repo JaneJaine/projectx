@@ -4,6 +4,9 @@ import Grid from '@mui/material/Grid';
 import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
+import EmailIcon from '@mui/icons-material/Email';
+import AdjustIcon from '@mui/icons-material/Adjust';
+import ArticleIcon from '@mui/icons-material/Article';
 import { useEffect } from 'react';
 
 
@@ -33,7 +36,7 @@ export default function Review({ data, setSubmitData, submitData }) {
             </ListItem>
             <ListItem>
               <ListItemIcon>
-                <PersonIcon />
+                <EmailIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Email"
@@ -46,7 +49,7 @@ export default function Review({ data, setSubmitData, submitData }) {
           <List dense>
             <ListItem>
               <ListItemIcon>
-                <PersonIcon />
+                <AdjustIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Mangelart"
@@ -55,7 +58,7 @@ export default function Review({ data, setSubmitData, submitData }) {
             </ListItem>
             <ListItem>
               <ListItemIcon>
-                <PersonIcon />
+                <ArticleIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Beschreibung"
@@ -67,7 +70,7 @@ export default function Review({ data, setSubmitData, submitData }) {
         <Grid item xs={12} sm={6}>
           <ListItem>
             <ListItemIcon>
-              <PersonIcon />
+              <LocationOnIcon />
             </ListItemIcon>
             <ListItemText
               primary="Ortangabe"

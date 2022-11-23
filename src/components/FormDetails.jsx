@@ -12,7 +12,7 @@ export default function AddressForm({ data, setData }) {
       <Typography variant="h6" gutterBottom>
         Details zum Mangel
       </Typography>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
           <Autocomplete
             disablePortal
