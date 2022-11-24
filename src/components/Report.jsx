@@ -48,6 +48,7 @@ export default function Report() {
     email: '',
     firstname: '',
     lastname: '',
+    image: '',
   });
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
