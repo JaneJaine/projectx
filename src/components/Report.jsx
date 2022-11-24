@@ -52,14 +52,32 @@ export default function Report() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-//handle final submit
+  //handle final submit
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(submitData.location);
-    console.log(submitData.description);
-    console.log(submitData.type);
-    alert("Data" + submitData.type + ' ' + submitData.description);
     //Proccess Form Backend
+    sendData();
+  }
+  const sendData = () => {
+    fetch('http://localhost:8080/api/v1/damageReport/addDamageReport', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        location: submitData.location,
+        type: submitData.type,
+        description: submitData.description,
+        image: '',
+        /* userMail: '',
+        userName: '', */
+        status: 'in work',
+      })
+    }).then(res => {
+      return res
+    })
+      .then(data => console.log(data))
+      .catch(error => console.log('ERROR' + error))
   }
   const [submitData, setSubmitData] = useState({
     location: '',
@@ -67,6 +85,7 @@ export default function Report() {
     description: '',
     userMail: '',
     userName: '',
+    status: 'in work',
   });
 
   //handle device width settings -> mobile or desktop view for stepper
