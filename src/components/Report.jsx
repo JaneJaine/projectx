@@ -1,14 +1,17 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { Box, Container, Paper, Stepper, Step, StepLabel, Button, Typography, StepContent } from '@mui/material'
-import CssBaseline from '@mui/material/CssBaseline';
-import { styled } from '@mui/material/styles';
+import  React, { useState, useEffect } from 'react';
+
+import { useHistory } from 'react-router-dom';
+
 import FormLocation from './FromLocation';
 import PersonalForm from './FormPersonal';
 import DetailForm from './FormDetails';
 import Review from './FormReview';
-import Background from '../media/wallpaperFrankfurt.jpg';
 
+import { Box, Container, Paper, Stepper, Step, StepLabel, Button, Typography, StepContent } from '@mui/material'
+import CssBaseline from '@mui/material/CssBaseline';
+import { styled } from '@mui/material/styles';
+
+import Background from '../media/wallpaperFrankfurt.jpg';
 
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
 
@@ -19,6 +22,7 @@ const CustomBox = styled(Box)(({ theme }) => ({
 ));
 
 export default function Report() {
+  const history = useHistory();
   //handle steps and final submit of data
   function getStepContent(step) {
     switch (step) {
@@ -78,6 +82,13 @@ export default function Report() {
     })
       .then(data => console.log(data))
       .catch(error => console.log('ERROR' + error))
+      if (true){
+        submitNavToHome()
+      }
+  }
+  const submitNavToHome = () => {
+    //to-do success page
+    history.push("/")
   }
   const [submitData, setSubmitData] = useState({
     location: '',
