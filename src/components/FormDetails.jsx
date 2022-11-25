@@ -11,6 +11,17 @@ export default function AddressForm({ data, setData }) {
     console.log("image" + e.target.value)
     setData({data, image: e.target.value});
   }
+  const fileSelectHandler = (e) => {
+    this.useState({
+      selectedFile: e.target.files[0]
+    })
+  }
+
+  const fileUploadHandler = () =>{
+    const fd = new FormData();
+    fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
+    fetch('')
+  }
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
