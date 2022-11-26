@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import HomeIcon from "@mui/icons-material/Home";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import logoImg from "../media/Frankfurt_am_Main_logo_small.png";
 import { Container } from "@mui/system";
+import { Link } from "react-router-dom";
 import {
     Drawer,
     List,
@@ -129,9 +130,15 @@ export const Navbar = () => {
                 </Box>
 
                 <NavbarLinksBox>
-                    <NavLink to="/" variant="body2">Home</NavLink>
-                    <NavLink to="contact" variant="body2">Contact</NavLink>
-                    <NavLink variant="body2">Impressum</NavLink>
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <NavLink>Home</NavLink>
+                    </Link>
+                    <Link to="/contact" style={{ textDecoration: 'none' }}>
+                        <NavLink to="contact" variant="body2">Contact</NavLink>
+                    </Link>
+                    <Link to="/impressum" style={{ textDecoration: 'none' }}>
+                        <NavLink variant="body2">Impressum</NavLink>
+                    </Link>
                 </NavbarLinksBox>
             </Box>
 
