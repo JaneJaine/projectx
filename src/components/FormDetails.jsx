@@ -9,7 +9,7 @@ export default function AddressForm({ data, setData }) {
   const [inputValue, setInputValue] = React.useState('');
   const checkInput = (e) =>{
     console.log("image" + e.target.value)
-    setData({data, image: e.target.value});
+    //setData({data, image: e.target.files[0]});
   }
   const fileSelectHandler = (e) => {
     this.useState({

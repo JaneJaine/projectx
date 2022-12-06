@@ -74,9 +74,8 @@ export default function Report() {
         type: submitData.type,
         description: submitData.description,
         image: '',
-        /* userMail: '',
-        userName: '', */
-        status: 'in work',
+        userMail: submitData.userMail,
+        userName: submitData.userName,
       })
     }).then(res => {
       return res
@@ -97,7 +96,6 @@ export default function Report() {
     description: '',
     userMail: '',
     userName: '',
-    status: 'in work',
   });
 
   //handle device width settings -> mobile or desktop view for stepper
