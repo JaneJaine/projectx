@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import React from 'react';
 import './App.css';
 import NoMatch from './pages/NoMatch';
@@ -12,17 +12,16 @@ import Review from './components/FormReview';
 function App() {
   return (
     <React.Fragment>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/report" component={ReportPage} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/admin" component={Admin} />
-          <Route path="/confirmation" component={Confirmation} />
-          <Route path="/review" component={Review} />
-          <Route component={NoMatch}></Route>
-        </Switch>
-      </Router>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Home />}></Route>
+          <Route path="/report" element={<ReportPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/confirmation" element={<Confirmation />} />
+          <Route element={<NoMatch />}></Route>
+        </Routes>
+      </BrowserRouter>
     </React.Fragment>
   );
 }

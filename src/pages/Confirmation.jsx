@@ -2,15 +2,15 @@ import { Typography, Grid, Button } from '@mui/material'
 import React, {useState} from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { useHistory } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 export default function Confirmation({ success, data }) {
-    const history = useHistory();
+    const navigate = useNavigate();
     const handleSuccess = () => {
-        history.push('/');
+        navigate("/");
     }
     const handleFailure = () => {
-        this.props.history.push('/review', { data, setSubmitData, submitData });
+       navigate('/report');
     }
     const [submitData, setSubmitData] = useState({
         location: '',
@@ -21,7 +21,7 @@ export default function Confirmation({ success, data }) {
       });
     return (
         <React.Fragment>
-            {false ? (
+            {success ? (
                 <React.Fragment>
                     <Typography variant="h5" gutterBottom >
                         Vielen Dank für Ihre Mithilfe!
@@ -50,6 +50,7 @@ export default function Confirmation({ success, data }) {
                         </Grid>
                     </Grid>
                     <Button onClick={handleFailure} color='error'>Nochmal abschicken</Button>
+                    <Button onClick={handleSuccess}>Zurück zur Homepage</Button>
                 </React.Fragment>
             )}
         </React.Fragment>
