@@ -5,7 +5,7 @@ import MapView from './MapView';
 export default function FormLocation({ data, setData }) {
 
   const [checked, setChecked] = useState(false);
-  const [mapLabel, setLabel] = useState(true)
+  const [mapLabel, setLabel] = useState(true);
   const handleChange = (e) => {
     setChecked(e.target.checked)
     setLabel(mapLabel => !mapLabel)

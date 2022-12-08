@@ -1,6 +1,4 @@
-import  React, { useState, useEffect } from 'react';
-
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 import FormLocation from './FromLocation';
 import PersonalForm from './FormPersonal';
@@ -12,6 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
 
 import Background from '../media/wallpaperFrankfurt.jpg';
+import Confirmation from '../pages/Confirmation';
 
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
 
@@ -22,7 +21,6 @@ const CustomBox = styled(Box)(({ theme }) => ({
 ));
 
 export default function Report() {
-  const history = useHistory();
   //handle steps and final submit of data
   function getStepContent(step) {
     switch (step) {
@@ -62,7 +60,9 @@ export default function Report() {
     e.preventDefault();
     //Proccess Form Backend
     sendData();
+    setActiveStep(activeStep + 1);
   }
+  const [success, setSuccess] = useState(null);
   const sendData = () => {
     fetch('http://localhost:8080/api/v1/damageReport/addDamageReport', {
       method: 'POST',
@@ -74,21 +74,21 @@ export default function Report() {
         type: submitData.type,
         description: submitData.description,
         image: '',
-        userMail: submitData.userMail,
-        userName: submitData.userName,
+        usermail: submitData.userMail,
+        username: submitData.userName,
       })
     }).then(res => {
-      return res
+      if (res.status === 200) {
+        setSuccess(true);
+        return res;
+      }
+      else {
+        setSuccess(false);
+        return res;
+      }
     })
       .then(data => console.log(data))
       .catch(error => console.log('ERROR' + error))
-      if (true){
-        submitNavToHome()
-      }
-  }
-  const submitNavToHome = () => {
-    //to-do success page
-    history.push("/")
   }
   const [submitData, setSubmitData] = useState({
     location: '',
@@ -118,49 +118,58 @@ export default function Report() {
           <Typography component="h1" variant="h4" align="center">
             Mangelmelder
           </Typography>
-          {width <= 768 ? (
+          {(activeStep === steps.length) ? (
             <React.Fragment>
-              <Stepper activeStep={activeStep} orientation="vertical" sx={{ pt: 3, pb: 5 }}>
-                {steps.map((label) => (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                    <StepContent>{getStepContent(activeStep)}</StepContent>
-                  </Step>
-                ))}
-              </Stepper>
+              <Confirmation success={success} data={data} />
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-                {steps.map((label) => (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
-              {getStepContent(activeStep)}
+              {width <= 768 ? (
+                <React.Fragment>
+                  <Stepper activeStep={activeStep} orientation="vertical" sx={{ pt: 3, pb: 5 }}>
+                    {steps.map((label) => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                        <StepContent>{getStepContent(activeStep)}</StepContent>
+                      </Step>
+                    ))}
+                  </Stepper>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+                    {steps.map((label) => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                      </Step>
+                    ))}
+                  </Stepper>
+                  {getStepContent(activeStep)}
+                </React.Fragment>
+              )}
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                {activeStep !== 0 && (
+                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                    Back
+                  </Button>
+                )}
+                {activeStep === steps.length - 1 ? (
+                  <Button
+                    variant="contained"
+                    onClick={handleSubmit}
+                    sx={{ mt: 3, ml: 1 }}
+                  >Absenden</Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    sx={{ mt: 3, ml: 1 }}
+                  >Weiter</Button>
+                )}
+              </Box>
             </React.Fragment>
           )}
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            {activeStep !== 0 && (
-              <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                Back
-              </Button>
-            )}
-            {activeStep === steps.length - 1 ? (
-              <Button
-                variant="contained"
-                onClick={handleSubmit}
-                sx={{ mt: 3, ml: 1 }}
-              >Absenden</Button>
-            ) : (
-              <Button
-                variant="contained"
-                onClick={handleNext}
-                sx={{ mt: 3, ml: 1 }}
-              >Weiter</Button>
-            )}
-          </Box>
+
         </Paper>
       </Container>
     </CustomBox>

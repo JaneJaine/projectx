@@ -14,7 +14,6 @@ export default function Review({ data, setSubmitData, submitData }) {
   const location = data.coordinates ? data.coordinates : data.street + ' ' + data.strNr + ', ' + data.zip;
   const userName = data.firstname + ' ' + data.lastname;
   useEffect(() => {
-    console.log(data.type);
     setSubmitData({ ...submitData, location: location, type: data.type, description: data.description, userMail: data.email, userName: userName  })
   },[])
   return (
