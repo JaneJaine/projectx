@@ -7,7 +7,7 @@ export default function AddressForm({ data, setData }) {
     'Defekt', 'Verschmutzung', 'Parkverstoß', 'Anderes'
   ]
   const [inputValue, setInputValue] = React.useState('');
-  const checkInput = (e) =>{
+  const checkInput = (e) => {
     console.log("image" + e.target.value)
     //setData({data, image: e.target.files[0]});
   }
@@ -17,18 +17,22 @@ export default function AddressForm({ data, setData }) {
     })
   }
 
-  const fileUploadHandler = () =>{
+  const fileUploadHandler = () => {
     const fd = new FormData();
     fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
     fetch('')
   }
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Details zum Mangel
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item xs={12}sm={6}>
+      <div>  
+        <Typography variant="h6" gutterBottom>
+          Details zum Mangel
+        </Typography>
+        <Typography variant='b2' sx={{ my: 4 }}>Bitte geben Sie weitere Details zum Mangel an, um eine besser Bearbeitung zu ermöglichen.</Typography>
+      </div>
+
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
           <Autocomplete
             disablePortal
             id="combo-box-demo"
@@ -48,7 +52,7 @@ export default function AddressForm({ data, setData }) {
         <Grid item xs={12} sm={6}>
           <Button variant="contained" component="label">
             Upload File
-            <input type="file" hidden onChange={(e)=>checkInput(e)}/>
+            <input type="file" hidden onChange={(e) => checkInput(e)} />
           </Button>
         </Grid>
         <Grid item xs={12}>

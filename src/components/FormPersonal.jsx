@@ -3,12 +3,13 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 
-export default function FormPersonal({data, setData}) {
+export default function FormPersonal({ data, setData }) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Nutzerdaten
       </Typography>
+      <Typography variant='b2' sx={{ my: 5 }} gutterBottom>Um eventuelle Nachfragen zu ermöglichen, geben Sie bitte Ihre Kontaktdaten an.</Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -19,7 +20,7 @@ export default function FormPersonal({data, setData}) {
             fullWidth
             variant="standard"
             value={data.firstname}
-            onChange={(e)=>setData({...data, firstname: e.target.value})}
+            onChange={(e) => setData({ ...data, firstname: e.target.value })}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -30,7 +31,7 @@ export default function FormPersonal({data, setData}) {
             fullWidth
             variant="standard"
             value={data.lastname}
-            onChange={(e)=>setData({...data, lastname: e.target.value})}
+            onChange={(e) => setData({ ...data, lastname: e.target.value })}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -42,7 +43,7 @@ export default function FormPersonal({data, setData}) {
             fullWidth
             variant="standard"
             value={data.email}
-            onChange={(e)=>setData({...data, email: e.target.value})}
+            onChange={(e) => setData({ ...data, email: e.target.value })}
           />
         </Grid>
       </Grid>
