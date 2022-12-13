@@ -58,7 +58,7 @@ export default function AddressForm({ data, setData }) {
             id="outlined-required-multiline"
             label="Beschreibung"
             placeholder="Bitte geben Sie eine Beschreibung ein"
-            helperText={descriptionError ? "Bitte dieses Fled nicht leer lassen" : ""}
+            helperText={descriptionError ? "Bitte dieses Feld nicht leer lassen" : ""}
             value={data.description}
             onChange={(e) => {setData({ ...data, description: e.target.value }); handleDescriptionCheck(e.target.value)}}
           />
