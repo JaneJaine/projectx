@@ -11,17 +11,7 @@ export default function AddressForm({ data, setData }) {
     console.log("image" + e.target.value)
     //setData({data, image: e.target.files[0]});
   }
-  const fileSelectHandler = (e) => {
-    this.useState({
-      selectedFile: e.target.files[0]
-    })
-  }
 
-  const fileUploadHandler = () => {
-    const fd = new FormData();
-    fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
-    fetch('')
-  }
   return (
     <React.Fragment>
       <div>  
@@ -62,7 +52,7 @@ export default function AddressForm({ data, setData }) {
             label="Beschreibung"
             placeholder="Bitte geben Sie eine Beschreibung ein"
             value={data.description}
-            onChange={(e) => setData({ ...data, description: e.target.value })}
+            onChange={(e) => {setData({ ...data, description: e.target.value }); }}
           />
         </Grid>
       </Grid>

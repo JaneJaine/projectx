@@ -41,7 +41,7 @@ export default function Report() {
     street: '',
     strNr: '',
     zip: '',
-    typeS: 'Defekt',
+    type: 'Defekt',
     description: '',
     email: '',
     firstname: '',

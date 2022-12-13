@@ -58,11 +58,6 @@ export default function FormLocation({ data, setData }) {
     setChecked(e.target.checked)
     setLabel(mapLabel => !mapLabel)
   }
-
-  const setDataString = (origin, value) => {
-    return (`${origin}:${value}`);
-  }
-
   const handleFieldCheck = (origin, value) => {
     if (origin === "street") {
       if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
@@ -79,12 +74,11 @@ export default function FormLocation({ data, setData }) {
       } else { setstrNrError(false); setstrNrErrorText(""); }
     }
     if (origin === "zip") {
-      if ((!zipFrank.includes(value)) || (!value.length == 5)) {
+      if ((!zipFrank.includes(value)) || (!value.length === 5)) {
         setZipError(true);
       } else { setZipError(false); }
     }
   }
-  //.*[0-9].*
   return (
     <React.Fragment>
       <Typography variant="h6">
@@ -107,7 +101,6 @@ export default function FormLocation({ data, setData }) {
                 variant="standard"
                 helperText={streetError ? "Bitte nicht leer lassen" : ""}
                 value={data.street}
-                //onChange={(e) => setData({ ...data, street: e.target.value })}
                 onChange={(e) => { setData({ ...data, street: e.target.value }); handleFieldCheck("street", e.target.value) }}
               />
             </Grid>
