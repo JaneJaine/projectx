@@ -1,11 +1,17 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { Autocomplete, TextField, Typography, Grid, Button } from '@mui/material';
 
 export default function AddressForm({ data, setData }) {
-
   const detailOptions = [
     'Defekt', 'Verschmutzung', 'Parkverstoß', 'Anderes'
   ]
+  const [descriptionError, setDescriptionError] = useState(false);
+  const handleDescriptionCheck = (value) => {
+    if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
+      setDescriptionError(true);
+    } else{ setDescriptionError(false);}
+  }
+
   const [inputValue, setInputValue] = React.useState('');
   const checkInput = (e) => {
     console.log("image" + e.target.value)
@@ -48,11 +54,13 @@ export default function AddressForm({ data, setData }) {
         <Grid item xs={12}>
           <TextField
             required
+            error={descriptionError}
             id="outlined-required-multiline"
             label="Beschreibung"
             placeholder="Bitte geben Sie eine Beschreibung ein"
+            helperText={descriptionError ? "Bitte dieses Fled nicht leer lassen" : ""}
             value={data.description}
-            onChange={(e) => {setData({ ...data, description: e.target.value }); }}
+            onChange={(e) => {setData({ ...data, description: e.target.value }); handleDescriptionCheck(e.target.value)}}
           />
         </Grid>
       </Grid>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import FormLocation from './FromLocation';
+import FormLocation from './FormLocation';
 import PersonalForm from './FormPersonal';
 import DetailForm from './FormDetails';
 import Review from './FormReview';
