@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import Background from '../media/wallpaperFrankfurt.jpg';
 import Confirmation from '../pages/Confirmation';
 
+//sets the steps for the progress bar
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
 
 const CustomBox = styled(Box)(({ theme }) => ({
@@ -21,7 +22,8 @@ const CustomBox = styled(Box)(({ theme }) => ({
 ));
 
 export default function Report() {
-  //handle steps and final submit of data
+//this part handles the steps and data sharing between them
+  //handle steps 
   function getStepContent(step) {
     switch (step) {
       case 0:
@@ -36,6 +38,15 @@ export default function Report() {
         throw new Error('Unknown step');
     }
   }
+  //sets the active step for navigation through components
+  const [activeStep, setActiveStep] = useState(0);
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
+  };
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
+  };
+  //handles the data sharing between the steps
   const [data, setData] = useState({
     coordinates: '',
     street: '',
@@ -48,13 +59,7 @@ export default function Report() {
     lastname: '',
     image: '',
   });
-  const [activeStep, setActiveStep] = useState(0);
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
+//this part handles the submit of the data to the backend server
   //handle final submit
   const handleSubmit = e => {
     e.preventDefault();
@@ -62,7 +67,9 @@ export default function Report() {
     sendData();
     setActiveStep(activeStep + 1);
   }
+  //sets the success variable to indicate success of post request to backend
   const [success, setSuccess] = useState(null);
+  //handles the sending of post request to backend and response validation
   const sendData = () => {
     fetch('http://localhost:8080/api/v1/damageReport/addDamageReport', {
       method: 'POST',
@@ -90,6 +97,7 @@ export default function Report() {
       .then(data => console.log(data))
       .catch(error => console.log('ERROR' + error))
   }
+  //handles the data processing to fit for the final post request
   const [submitData, setSubmitData] = useState({
     location: '',
     type: '',
@@ -97,12 +105,14 @@ export default function Report() {
     userMail: '',
     userName: '',
   });
-
+//this part handles resposive design of the page
   //handle device width settings -> mobile or desktop view for stepper
   const [width, setWidth] = useState(window.innerWidth);
+  //handles the resize of window by setting width
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
+  //event listener to detect window rezising to make design responsive
   useEffect(() => {
     window.addEventListener('resize', handleWindowSizeChange);
     return () => {
