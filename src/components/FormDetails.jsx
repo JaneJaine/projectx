@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Autocomplete, TextField, Typography, Grid, Button } from '@mui/material';
+import MultiFormData from './MultiFormData';
 
 export default function AddressForm({ data, setData }) {
   const detailOptions = [
@@ -9,22 +10,20 @@ export default function AddressForm({ data, setData }) {
   const handleDescriptionCheck = (value) => {
     if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
       setDescriptionError(true);
-    } else{ setDescriptionError(false);}
+    } else { setDescriptionError(false); }
   }
 
   const [inputValue, setInputValue] = React.useState('');
-  const checkInput = (e) => {
-    console.log("image" + e.target.value)
-    //setData({data, image: e.target.files[0]});
-  }
 
   return (
     <React.Fragment>
-      <div>  
+      <div>
         <Typography variant="h6" gutterBottom>
           Details zum Mangel
         </Typography>
-        <Typography variant='b2' sx={{ my: 4 }}>Bitte geben Sie weitere Details zum Mangel an, um eine besser Bearbeitung zu ermöglichen.</Typography>
+        <Typography variant='b2' sx={{ my: 4 }}>
+          Bitte geben Sie weitere Details zum Mangel an, um eine besser Bearbeitung zu ermöglichen.
+        </Typography>
       </div>
 
       <Grid container spacing={3}>
@@ -46,10 +45,7 @@ export default function AddressForm({ data, setData }) {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Button variant="contained" component="label">
-            Upload File
-            <input type="file" hidden onChange={(e) => checkInput(e)} />
-          </Button>
+          {/* <MultiFormData /> */}
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -60,7 +56,7 @@ export default function AddressForm({ data, setData }) {
             placeholder="Bitte geben Sie eine Beschreibung ein"
             helperText={descriptionError ? "Bitte dieses Feld nicht leer lassen" : ""}
             value={data.description}
-            onChange={(e) => {setData({ ...data, description: e.target.value }); handleDescriptionCheck(e.target.value)}}
+            onChange={(e) => { setData({ ...data, description: e.target.value }); handleDescriptionCheck(e.target.value) }}
           />
         </Grid>
       </Grid>

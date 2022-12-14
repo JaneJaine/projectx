@@ -101,7 +101,6 @@ export const Navbar = () => {
     }));
 
     const NavbarLogo = styled("img")(({ theme }) => ({
-        cursor: "pointer",
         [theme.breakpoints.down("md")]: {
             display: "none",
         },
