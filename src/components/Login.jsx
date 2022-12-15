@@ -20,6 +20,7 @@ export default function Login() {
                 buttonText="Admin LogIn"
                 onClickFunction={handleShowAdminButton}
             />
+            <Dialog show={show}></Dialog>
         </React.Fragment>
     )
 }
