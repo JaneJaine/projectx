@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import HomeIcon from "@mui/icons-material/Home";
@@ -18,11 +18,21 @@ import {
     styled,
 } from "@mui/material";
 import Login from "./Login";
+import { useEffect } from "react";
+import CustomButton from "./CustomButton";
 
 export const Navbar = () => {
     const [mobileMenu, setMobileMenu] = useState({
         left: false,
     });
+
+    const [showAdminButton, setShowAdminButton] = useState(true);
+    const handleShowAdminButton = () => setShowAdminButton (false);
+   // const handleShowAdminButton = () => console.log('Clicked3');
+  
+    useEffect(() => {
+      });
+
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (
@@ -148,7 +158,9 @@ export const Navbar = () => {
                     justifyContent: "center",
                     gap: "1rem",
                 }}>
-                <Login />
+               {/* <Login onClick = {console.log('Clicked3')}/>  */}
+                <Login onClick = {handleShowAdminButton}/> 
+               
             </Box>
         </NavbarContainer>
     );
