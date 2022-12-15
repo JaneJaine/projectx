@@ -26,7 +26,7 @@ export const Navbar = () => {
         left: false,
     });
 
-
+    const [showAdminButton, setShowAdminButton] = useState(true);
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (
@@ -152,10 +152,18 @@ export const Navbar = () => {
                     justifyContent: "center",
                     gap: "1rem",
                 }}>
-               {/* <Login onClick = {console.log('Clicked3')}/>  */}
-                <Login /* onClick = {handleShowAdminButton} *//> 
-               
-            </Box>
+               {(showAdminButton) ? (
+                <Login showAdminButton ={showAdminButton} setShowAdminButton = {setShowAdminButton} /> 
+               ):(
+                <React.Fragment>
+                   <Link to="/" style={{textDecoration: 'none'}}>
+                    <CustomButton /*onClickFunction={}*/ backgroundColor={"red"} buttonText={"Logout"} > </CustomButton>
+                 </Link>
+                </React.Fragment>
+
+               )
+               } 
+               </Box>
         </NavbarContainer>
     );
 };
