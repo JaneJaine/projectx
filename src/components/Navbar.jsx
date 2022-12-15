@@ -153,7 +153,7 @@ export const Navbar = () => {
                     gap: "1rem",
                 }}>
                {/* <Login onClick = {console.log('Clicked3')}/>  */}
-                <Login onClick = {handleShowAdminButton}/> 
+                <Login /* onClick = {handleShowAdminButton} *//> 
                
             </Box>
         </NavbarContainer>
