@@ -26,12 +26,6 @@ export const Navbar = () => {
         left: false,
     });
 
-    const [showAdminButton, setShowAdminButton] = useState(true);
-    const handleShowAdminButton = () => setShowAdminButton (false);
-   // const handleShowAdminButton = () => console.log('Clicked3');
-  
-    useEffect(() => {
-      });
 
 
     const toggleDrawer = (anchor, open) => (event) => {
