@@ -14,6 +14,7 @@ import Confirmation from '../pages/Confirmation';
 
 //sets the steps for the progress bar
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
+const zipFrank = ["60306","60308","60310","60311","60312","60313","60314","60316","60318","60320","60322","60323","60325","60326","60327","60329","60385","60386","60388","60389","60431","60433","60435","60437","60438","60439","60486","60487","60488","60489","60528","60529","60549","60594","60596","60598","60599","65929","65931","65933","65934","65936","61352"]
 
 const CustomBox = styled(Box)(({ theme }) => ({
   backgroundImage: "url(" + Background + ")",
@@ -22,16 +23,16 @@ const CustomBox = styled(Box)(({ theme }) => ({
 ));
 
 export default function Report() {
-//this part handles the steps and data sharing between them
+  //this part handles the steps and data sharing between them
   //handle steps 
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <FormLocation data={data} setData={setData} />;
+        return <FormLocation data={data} setData={setData} validationError={validationError} checkInput={checkInput} />;
       case 1:
-        return <DetailForm data={data} setData={setData} />;
+        return <DetailForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} />;
       case 2:
-        return <PersonalForm data={data} setData={setData} />
+        return <PersonalForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} />
       case 3:
         return <Review data={data} submitData={submitData} setSubmitData={setSubmitData} />;
       default:
@@ -59,7 +60,7 @@ export default function Report() {
     lastname: '',
     image: '',
   });
-//this part handles the submit of the data to the backend server
+  //this part handles the submit of the data to the backend server
   //handle final submit
   const handleSubmit = e => {
     e.preventDefault();
@@ -105,7 +106,7 @@ export default function Report() {
     userMail: '',
     userName: '',
   });
-//this part handles resposive design of the page
+  //this part handles resposive design of the page
   //handle device width settings -> mobile or desktop view for stepper
   const [width, setWidth] = useState(window.innerWidth);
   //handles the resize of window by setting width
@@ -119,7 +120,38 @@ export default function Report() {
       window.removeEventListener('resize', handleWindowSizeChange);
     }
   }, []);
+  //this part handles validation of user input inside the steps
+  const checkInput = (origin, value) => {
+    switch (origin) {
+      case "description":
+        if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
+          console.log("value: " + value);
+          console.log("1.1: " + validationError.descriptionError)
+          setValidationError({ ...validationError, descriptionError: true });
+          console.log("1.2: " + validationError.descriptionError)
+        } else { setValidationError({ ...validationError, descriptionError: false }); console.log("1.3: " + validationError.descriptionError) }
+        break;
+      case "street":
+        if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
+          setValidationError({ ...validationError, streetError: true });
+        } else { setValidationError({ ...validationError, streetError: false }) }
+        break;
+        case "zip":
+          if ((!zipFrank.includes(value)) || (!value.length === 5)){
 
+          }
+    }
+
+  }
+  const [validationError, setValidationError] = useState({
+    streetError: null,
+    strNrError: null,
+    zipError: null,
+    descriptionError: null,
+    firstNameError: null,
+    lastNameError: null,
+    userMailError: null,
+  });
   return (
     <CustomBox>
       <CssBaseline />
@@ -179,10 +211,8 @@ export default function Report() {
               </Box>
             </React.Fragment>
           )}
-
         </Paper>
       </Container>
     </CustomBox>
-
   );
 }

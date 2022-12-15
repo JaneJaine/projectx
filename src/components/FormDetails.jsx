@@ -1,8 +1,7 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import { Autocomplete, TextField, Typography, Grid, Button } from '@mui/material';
-import MultiFormData from './MultiFormData';
 
-export default function AddressForm({ data, setData }) {
+export default function AddressForm({ data, setData, validationError, checkInput }) {
   const detailOptions = [
     'Defekt', 'Verschmutzung', 'Parkverstoß', 'Anderes'
   ]
@@ -50,13 +49,13 @@ export default function AddressForm({ data, setData }) {
         <Grid item xs={12}>
           <TextField
             required
-            error={descriptionError}
+            error={validationError.descriptionError}
             id="outlined-required-multiline"
             label="Beschreibung"
             placeholder="Bitte geben Sie eine Beschreibung ein"
-            helperText={descriptionError ? "Bitte dieses Feld nicht leer lassen" : ""}
+            helperText={validationError.descriptionError ? "Bitte dieses Feld nicht leer lassen" : ""}
             value={data.description}
-            onChange={(e) => { setData({ ...data, description: e.target.value }); handleDescriptionCheck(e.target.value) }}
+            onChange={(e) => { setData({ ...data, description: e.target.value }); console.log(validationError.descriptionError); checkInput("description", e.target.value) }}
           />
         </Grid>
       </Grid>
