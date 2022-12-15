@@ -132,7 +132,7 @@ export default function Report() {
             <React.Fragment>
               <Confirmation success={success} data={data} />
             </React.Fragment>
-          ) : (
+           ) : (
             <React.Fragment>
               {width <= 768 ? (
                 <React.Fragment>
