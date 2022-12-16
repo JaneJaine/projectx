@@ -5,14 +5,7 @@ export default function AddressForm({ data, setData, validationError, checkInput
   const detailOptions = [
     'Defekt', 'Verschmutzung', 'Parkverstoß', 'Anderes'
   ]
-  const [descriptionError, setDescriptionError] = useState(false);
-  const handleDescriptionCheck = (value) => {
-    if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
-      setDescriptionError(true);
-    } else { setDescriptionError(false); }
-  }
-
-  const [inputValue, setInputValue] = React.useState('');
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <React.Fragment>
@@ -55,7 +48,7 @@ export default function AddressForm({ data, setData, validationError, checkInput
             placeholder="Bitte geben Sie eine Beschreibung ein"
             helperText={validationError.descriptionError ? "Bitte dieses Feld nicht leer lassen" : ""}
             value={data.description}
-            onChange={(e) => { setData({ ...data, description: e.target.value }); console.log(validationError.descriptionError); checkInput("description", e.target.value) }}
+            onChange={(e) => { setData({ ...data, description: e.target.value }); checkInput("description", e.target.value) }}
           />
         </Grid>
       </Grid>

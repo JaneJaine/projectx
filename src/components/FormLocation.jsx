@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid, Typography, TextField, FormControlLabel, Switch } from '@mui/material';
 import MapView from './MapView';
 
-export default function FormLocation({ data, setData }) {
+export default function FormLocation({ data, setData, validationError, checkInput }) {
 
   const [checked, setChecked] = useState(false);
   const [mapLabel, setLabel] = useState(true);
@@ -16,27 +16,7 @@ export default function FormLocation({ data, setData }) {
     setChecked(e.target.checked)
     setLabel(mapLabel => !mapLabel)
   }
-  const handleFieldCheck = (origin, value) => {
-    if (origin === "street") {
-      if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
-        setStreetError(true);
-      } else setStreetError(false);
-    }
-    if (origin === "strNr") {
-      if (!(RegExp(".*[0-9].*", "g").test(value))) {
-        setstrNrError(true);
-        setstrNrErrorText("Bitte geben Sie mindestens eine Nummer ein");
-      } else if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
-        setstrNrError(true);
-        setstrNrErrorText("Bitte lassen Sie das Feld nicht leer");
-      } else { setstrNrError(false); setstrNrErrorText(""); }
-    }
-    if (origin === "zip") {
-      if ((!zipFrank.includes(value)) || (!value.length === 5)) {
-        setZipError(true);
-      } else { setZipError(false); }
-    }
-  }
+  
   return (
     <React.Fragment>
       <Typography variant="h6">
@@ -52,39 +32,39 @@ export default function FormLocation({ data, setData }) {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
-                error={streetError}
+                error={validationError.streetError}
                 required
                 label="Addresse"
                 fullWidth
                 variant="standard"
-                helperText={streetError ? "Bitte nicht leer lassen" : ""}
+                helperText={validationError.streetError ? "Bitte nicht leer lassen" : ""}
                 value={data.street}
-                onChange={(e) => { setData({ ...data, street: e.target.value }); handleFieldCheck("street", e.target.value) }}
+                onChange={(e) => { setData({ ...data, street: e.target.value }); checkInput("street", e.target.value)}}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                error={strNrError}
+                error={validationError.strNrError}
                 required
                 id="strNr"
                 label="Hausnummer"
                 fullWidth
                 variant="standard"
-                helperText={strNrError ? strNrErrorText : ""}
+                helperText={validationError.strNrError ? strNrErrorText : ""}
                 value={data.strNr}
-                onChange={(e) => { setData({ ...data, strNr: e.target.value }); handleFieldCheck("strNr", e.target.value) }}
+                onChange={(e) => { setData({ ...data, strNr: e.target.value }); checkInput("strNr", e.target.value)}}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                error={zipError}
+                error={validationError.zipError}
                 id="zip"
                 label="PLZ"
                 fullWidth
                 variant="standard"
-                helperText={zipError ? "Bitte eine gültige PLZ angeben" : ""}
+                helperText={validationError.zipError ? "Bitte eine gültige PLZ angeben" : ""}
                 value={data.zip}
-                onChange={(e) => { setData({ ...data, zip: e.target.value }); handleFieldCheck("zip", e.target.value) }}
+                onChange={(e) => { setData({ ...data, zip: e.target.value }); checkInput("zip", e.target.value) }}
               />
             </Grid>
           </Grid>

@@ -14,7 +14,7 @@ import Confirmation from '../pages/Confirmation';
 
 //sets the steps for the progress bar
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
-const zipFrank = ["60306","60308","60310","60311","60312","60313","60314","60316","60318","60320","60322","60323","60325","60326","60327","60329","60385","60386","60388","60389","60431","60433","60435","60437","60438","60439","60486","60487","60488","60489","60528","60529","60549","60594","60596","60598","60599","65929","65931","65933","65934","65936","61352"]
+const zipFrank = ["60306", "60308", "60310", "60311", "60312", "60313", "60314", "60316", "60318", "60320", "60322", "60323", "60325", "60326", "60327", "60329", "60385", "60386", "60388", "60389", "60431", "60433", "60435", "60437", "60438", "60439", "60486", "60487", "60488", "60489", "60528", "60529", "60549", "60594", "60596", "60598", "60599", "65929", "65931", "65933", "65934", "65936", "61352"]
 
 const CustomBox = styled(Box)(({ theme }) => ({
   backgroundImage: "url(" + Background + ")",
@@ -125,23 +125,40 @@ export default function Report() {
     switch (origin) {
       case "description":
         if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
-          console.log("value: " + value);
-          console.log("1.1: " + validationError.descriptionError)
           setValidationError({ ...validationError, descriptionError: true });
-          console.log("1.2: " + validationError.descriptionError)
-        } else { setValidationError({ ...validationError, descriptionError: false }); console.log("1.3: " + validationError.descriptionError) }
+        } else { setValidationError({ ...validationError, descriptionError: false }) }
         break;
       case "street":
         if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
           setValidationError({ ...validationError, streetError: true });
         } else { setValidationError({ ...validationError, streetError: false }) }
         break;
-        case "zip":
-          if ((!zipFrank.includes(value)) || (!value.length === 5)){
-
-          }
+      case "strNr":
+        if (!(RegExp(".*[0-9].*", "g").test(value))) {
+          setValidationError({ ...validationError, strNrError: true });
+        } else { setValidationError({ ...validationError, strNrError: false }) }
+        break;
+      case "zip":
+        if ((!zipFrank.includes(value)) || (!value.length === 5)) {
+          setValidationError({ ...validationError, zipError: true });
+        } else { setValidationError({ ...validationError, zipError: false }) }
+        break;
+      case "firstName":
+        if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
+          setValidationError({ ...validationError, firstNameError: true });
+        } else { setValidationError({ ...validationError, firstNameError: false }) }
+        break;
+      case "lastName":
+        if (!(RegExp("^(?!\s*$).+", "g").test(value))) {
+          setValidationError({ ...validationError, lastNameError: true });
+        } else { setValidationError({ ...validationError, lastNameError: false }) }
+        break;
+      case "mail":
+        if (!(RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$", "g").test(value))) {
+          setValidationError({ ...validationError, userMailError: true });
+        } else { setValidationError({ ...validationError, userMailError: false }) }
+        break;
     }
-
   }
   const [validationError, setValidationError] = useState({
     streetError: null,
@@ -155,7 +172,7 @@ export default function Report() {
   return (
     <CustomBox>
       <CssBaseline />
-      <Container component="main" maxWidth="md" sx={{ mb: 4, opacity: 0.9 }}>
+      <Container component="main" maxWidth="md" sx={{ opacity: 0.9 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
             Mangelmelder
@@ -164,7 +181,7 @@ export default function Report() {
             <React.Fragment>
               <Confirmation success={success} data={data} />
             </React.Fragment>
-           ) : (
+          ) : (
             <React.Fragment>
               {width <= 768 ? (
                 <React.Fragment>
