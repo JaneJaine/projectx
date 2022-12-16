@@ -2,7 +2,7 @@ import { Dialog } from '@mui/material';
 import React, { useState } from 'react';
 import CustomButton from "./CustomButton";
 
-export default function Login({ showAdminButton, setShowAdminButton} ) {
+export default function Login({setShowAdminButton} ) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

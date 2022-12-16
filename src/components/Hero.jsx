@@ -50,7 +50,7 @@ const Hero = () => {
                                 </CustomButton>
                             </Link>
                         </Box>
-                        <Box sx={{ flex: "1.25" }}>
+                        <Box sx={{ flex: "1.5" }}>
                             <img src={HeroImg} alt="heroImg" style={{ maxWidth: "100%", marginBottom: "2rem" }} />
                         </Box>
                     </CustomBox>
