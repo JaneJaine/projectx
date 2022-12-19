@@ -5,9 +5,6 @@ import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
 export default function FormPersonal({ data, setData, validationError, checkInput }) {
-  const [userErrorFirst, setUserErrorFirst] = useState(false);
-  const [userErrorLast, setUserErrorLast] = useState(false);
-  const [mailError, setMailError] = useState(false);
 
   return (
     <React.Fragment>

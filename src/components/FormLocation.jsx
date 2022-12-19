@@ -6,10 +6,6 @@ export default function FormLocation({ data, setData, validationError, checkInpu
 
   const [checked, setChecked] = useState(false);
   const [mapLabel, setLabel] = useState(true);
-  const [streetError, setStreetError] = useState(false);
-  const [strNrError, setstrNrError] = useState(false);
-  const [zipError, setZipError] = useState(false);
-  const [strNrErrorText, setstrNrErrorText] = useState('');
   const zipFrank = ["60306","60308","60310","60311","60312","60313","60314","60316","60318","60320","60322","60323","60325","60326","60327","60329","60385","60386","60388","60389","60431","60433","60435","60437","60438","60439","60486","60487","60488","60489","60528","60529","60549","60594","60596","60598","60599","65929","65931","65933","65934","65936","61352"]
 
   const handleChange = (e) => {
@@ -50,7 +46,7 @@ export default function FormLocation({ data, setData, validationError, checkInpu
                 label="Hausnummer"
                 fullWidth
                 variant="standard"
-                helperText={validationError.strNrError ? strNrErrorText : ""}
+                helperText={validationError.strNrError ? "Bitte mindestens eine Nummer eingeben" : ""}
                 value={data.strNr}
                 onChange={(e) => { setData({ ...data, strNr: e.target.value }); checkInput("strNr", e.target.value)}}
               />

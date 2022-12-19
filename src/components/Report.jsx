@@ -42,7 +42,19 @@ export default function Report() {
   //sets the active step for navigation through components
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+    /* var hasError = false;
+    for(const [key, value] of Object.entries(validationError)){
+      if(value == true || value == null){
+        hasError = true;
+      }
+    }
+    if(hasError){
+      alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
+      hasError=false;
+    }else{ */
+      setActiveStep(activeStep + 1);
+      //hasError=false;
+    //}
   };
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -76,24 +88,23 @@ export default function Report() {
   const sendData = () => {
     console.log("Files send"+ files)
     files.forEach((file, i) => {
-      requestData.append(`file${i}`, file, file.name);
+      requestData.append("file", file);
     });
     const jsonData = {
       location: submitData.location,
       type: submitData.type,
       description: submitData.description,
-      image: '',
       usermail: submitData.userMail,
       username: submitData.userName,
     };
-      requestData.append("damagereport", jsonData);
-      console.log(requestData.get("file1"))
+    
+      requestData.append("damagereport", new Blob([JSON.stringify(jsonData)], { 
+        type: 'application/json'
+      }));
+      console.log(requestData.get("file"))
     
     fetch('http://localhost:8080/api/v1/damageReport/addDamageReport', {
       method: 'POST',
-      headers: {
-        //'Content-Type': 'multipart/form-data',
-      },
       body: requestData,
     }).then(res => {
       if (res.status === 200) {
