@@ -20,7 +20,7 @@ import {
 import Login from "./Login";
 import CustomButton from "./CustomButton";
 
-export const Navbar = () => {
+export const NavbarAdmin = () => {
     const [mobileMenu, setMobileMenu] = useState({
         left: false,
     });
@@ -143,28 +143,8 @@ export const Navbar = () => {
                     </Link>
                 </NavbarLinksBox>
             </Box>
-
-            <Box
-                sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "1rem",
-                }}>
-               {(showAdminButton) ? (
-                <Login setShowAdminButton = {setShowAdminButton} /> 
-               ):(
-                <React.Fragment>
-                   <Link to="/" style={{textDecoration: 'none'}}>
-                    <CustomButton /*onClickFunction={}*/ backgroundColor={"red"} buttonText={"Logout"} > </CustomButton>
-                 </Link>
-                </React.Fragment>
-
-               )
-               } 
-               </Box>
         </NavbarContainer>
     );
 };
 
-export default Navbar;
+export default NavbarAdmin;
