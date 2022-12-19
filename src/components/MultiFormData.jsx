@@ -12,7 +12,6 @@ function MultiFormData({files, setFiles}) {
       console.log("files: " + files);
     }}
 
-  // 👇 files is not an array, but it's iterable, spread to get an array of files
   return (
     <div>
       <input type="file" onChange={handleFileChange} multiple />

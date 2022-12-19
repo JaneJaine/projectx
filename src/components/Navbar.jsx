@@ -64,7 +64,7 @@ export const Navbar = () => {
         </Box>
     );
 
-    const NavLink = styled(Typography)(({ theme }) => ({
+    const NavLink = styled(Typography)(() => ({
         fontSize: "14px",
         color: "#4F5361",
         fontWeight: "bold",
@@ -159,7 +159,6 @@ export const Navbar = () => {
                     <CustomButton /*onClickFunction={}*/ backgroundColor={"red"} buttonText={"Logout"} > </CustomButton>
                  </Link>
                 </React.Fragment>
-
                )
                } 
                </Box>

@@ -5,7 +5,7 @@ export class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <Hero />
+        {/* <Hero /> */}
       </React.Fragment>
     )
   }
