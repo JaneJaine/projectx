@@ -12,7 +12,7 @@ export default function AdminFilter({ filterItems, dropDownName, defaultItem }) 
 
 
     return (
-        <FormControl style={{ minWidth: 120 }} >
+        <FormControl style={{ maxWidth: 300 }} >
             <InputLabel variant="standard" htmlFor="uncontrolled-native">
                 {dropDownName}
             </InputLabel>
