@@ -9,7 +9,7 @@ function sleep(delay = 0) {
   });
 }
 
-export default function SearchBarAsynchronous() {
+export default function SearchBarAsynchronous({onChangeFunction}) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
@@ -58,6 +58,7 @@ export default function SearchBarAsynchronous() {
       renderInput={(params) => (
         <TextField
           {...params}
+          onChange = {onChangeFunction}
           label="PLZ"
           InputProps={{
             ...params.InputProps,

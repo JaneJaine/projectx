@@ -1,6 +1,7 @@
 import React from 'react';
 
 
+
 const MangelCard = ({ mangel: {id, type, status, username, usermail, user, description, image, location } }) => {
     
 
@@ -11,12 +12,12 @@ const MangelCard = ({ mangel: {id, type, status, username, usermail, user, descr
             </div>
 
             <div>
-                ImagePlaceholder
-                {/* <img src={Poster !== "N/A" ? Poster : "https://via.placeholder.com/400"} alt={Title} /> */}
+                <img src={require('/Users/lucaisaak/projectx/src/components/images/Frankfurt_Default_Image.jpeg')} />
+            
             </div>
 
             <div>
-                <span> {status}</span>
+                <span> Status: {status}</span>
                 <h3> {description}</h3>
                 <h3> {location}</h3>
             </div>

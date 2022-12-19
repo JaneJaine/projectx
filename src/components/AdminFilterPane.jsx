@@ -4,14 +4,30 @@ import SearchBarAsynchronous from '../components/AsynchronousSerachBar';
 import MangelCard from "./MangelCard";
 import { Box, Stack } from "@mui/material";
 import CustomButton from "./CustomButton";
+import { useEffect } from "react";
 
 export const AdminFilterPane = () => {
 
+    useEffect(() => {searchAllDR();},[]);
     const [filterState, setFilterState] = useState(false);
     const handleFilterTrue = () => searchAllDR;
     const handleFilterFalse = () => { setFilterState(false) };
     const [mangel, setMangel] = useState([]);
     const API_URL = "localhost:8080/api/v1/damageReport/getAllDamageReports";
+    const [selectedType, setSelectedType] = useState();
+    const [selectedStatus, setSelectedStatus] = useState();
+    const [selectedPlz, setSelectedPlz] = useState();
+    // && mangel.status.includes({selectedStatus})
+    // && mangel.location.includes({selectedPlz})
+
+    const useFilter = mangel.filter((mangel)=>mangel.type.includes({selectedType}));
+    // setMangel({
+    //   mangel : useFilter
+    // })
+
+
+    //alle Daten werden beim Laden der Seite automatisch geladen
+    
 
     const searchAllDR = async () => {
         const response = await fetch('http://localhost:8080/api/v1/damageReport/getAllDamageReports');
@@ -20,10 +36,14 @@ export const AdminFilterPane = () => {
 
         setMangel(data)
         console.log(mangel)
-        console.log(mangel[0])
+        // console.log(mangel[0])
+        // console.log(mangel[1])
+        // console.log(mangel[2])
+        console.log(mangel[0].type)
+        console.log(mangel[0].id)
+
+        
     }
-
-
 
     return (
         <React.Fragment>
@@ -55,22 +75,26 @@ export const AdminFilterPane = () => {
                             <h1 >Admin View </h1>
 
 
-                            <AdminFilter filterItems={["Alle", "Defekt", "Verschmutzung", "Parkverstoß", "Anderes", "deineMum"]}
+                            <AdminFilter filterItems={["Alle", "Defekt", "Verschmutzung", "Parkverstoß", "Anderes"]}
                                 dropDownName="Mangelart"
-                                defaultItem="1" />
+                                defaultItem="1" 
+                                onChangeFunction={setSelectedType}
+                                />
+                            
 
                             <AdminFilter filterItems={["Nicht bearbeitet", "in Bearbeitung", "Fertig"]}
                                 dropDownName="Status"
-                                defaultItem="1" />
+                                defaultItem="1" 
+                                onChangeFunction={setSelectedStatus}/>
 
-                            <SearchBarAsynchronous />
+                            <SearchBarAsynchronous onChangeFunction={setSelectedPlz}/>
 
 
                         </Stack>
 
                         <Stack spacing={1}>
-                            <CustomButton backgroundColor="#152238" color="#ffffff" buttonText="Filter" onClickFunction={searchAllDR} />
-                            <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Rückgängig" onClickFunction={handleFilterFalse} />
+                            <CustomButton backgroundColor="#152238" color="#ffffff" buttonText="Filter" onClickFunction={useFilter} />
+                            <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Rückgängig" onClickFunction={searchAllDR} />
 
                         </Stack>
                     </Stack>
@@ -78,10 +102,12 @@ export const AdminFilterPane = () => {
 
                 <Box sx=
                     {{
-                        backgroundColor: "#E0BBE4",
+                        backgroundColor: "#152238",
                         minWidth: 200,
                         maxWidth: 1361,
-                        width: 1361
+                        width: 1361,
+                        flexDirection : "row"
+                    
 
                     }}>
                     {mangel?.length > 0 ? (
