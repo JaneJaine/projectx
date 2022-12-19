@@ -30,7 +30,7 @@ export default function Report() {
       case 0:
         return <FormLocation data={data} setData={setData} validationError={validationError} checkInput={checkInput} />;
       case 1:
-        return <DetailForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} />;
+        return <DetailForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} files={files} setFiles={setFiles} />;
       case 2:
         return <PersonalForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} />
       case 3:
@@ -71,20 +71,30 @@ export default function Report() {
   //sets the success variable to indicate success of post request to backend
   const [success, setSuccess] = useState(null);
   //handles the sending of post request to backend and response validation
+  const requestData = new FormData();
+  const [files, setFiles] = useState([]);
   const sendData = () => {
+    console.log("Files send"+ files)
+    files.forEach((file, i) => {
+      requestData.append(`file${i}`, file, file.name);
+    });
+    const jsonData = {
+      location: submitData.location,
+      type: submitData.type,
+      description: submitData.description,
+      image: '',
+      usermail: submitData.userMail,
+      username: submitData.userName,
+    };
+      requestData.append("damagereport", jsonData);
+      console.log(requestData.get("file1"))
+    
     fetch('http://localhost:8080/api/v1/damageReport/addDamageReport', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        //'Content-Type': 'multipart/form-data',
       },
-      body: JSON.stringify({
-        location: submitData.location,
-        type: submitData.type,
-        description: submitData.description,
-        image: '',
-        usermail: submitData.userMail,
-        username: submitData.userName,
-      })
+      body: requestData,
     }).then(res => {
       if (res.status === 200) {
         setSuccess(true);
