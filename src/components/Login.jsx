@@ -38,9 +38,7 @@ export default function Login({ setShowAdminButton, token, setToken }) {
                 }
             })
             .catch(error => console.log('ERROR' + error))
-
     }
-
     return (
         <React.Fragment>
             <CustomButton
