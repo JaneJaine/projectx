@@ -114,16 +114,7 @@
 .mangelCard:hover div:nth-of-type(1) {
   opacity: 1;
 }
-.containerCard {
-  width: 100%;
-  margin-top: 3rem;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
 
 .mangelBox {
   width: 800px;
@@ -202,12 +193,22 @@
 .mangelBox:hover div:nth-of-type(1) {
   opacity: 1;
 }
+.containerCard {
+  width: 100%;
+  margin-top: 3rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 .containerBox {
   width: 100%;
   margin-top: 3rem;
 
   display: flex;
-  flex-direction: columm;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;

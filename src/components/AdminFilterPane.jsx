@@ -3,6 +3,7 @@ import AdminFilter from '../components/AdminFilter';
 import SearchBarAsynchronous from '../components/AsynchronousSerachBar';
 import MangelCard from "./MangelCard";
 import MangelBox from "./MangelBox";
+import ChangeStatusPane from "./ChangeStatusPane";
 import { Box, Stack } from "@mui/material";
 import CustomButton from "./CustomButton";
 import { useEffect } from "react";
@@ -229,14 +230,34 @@ export const AdminFilterPane = () => {
 
                         <div>
 
-                            <div className="containerBox">
-                                <div> 
+                            <div className="containerCard">
+                                <div>
                                     <MangelBox mangel={cardMangel} /* onClickBearbeitenFunction={bearbeiten} */ setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
-                                 </div>
-                                 <div>
-                                    <CustomButton backgroundColor="#ffffff"> </CustomButton>
-                                    </div>
-                              
+                                </div>
+                                <div>
+
+                                    <Box
+                                        sx={{
+                                            width: 300,
+                                            height: 300,
+                                            backgroundColor: 'primary.dark',
+                                            '&:hover': {
+                                                backgroundColor: 'primary.main',
+                                                opacity: [0.9, 0.8, 0.7],
+                                            },
+                                        }}
+                                    > 
+                                     <AdminFilter filterItems={["Alle", "Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
+                                        dropDownName="Status"
+                                        defaultItem={selectedStatus}
+                                        onChangeFunction={changeStatus} />
+                                    </Box>
+
+
+
+
+                                </div>
+
                             </div>
 
                         </div>
@@ -251,7 +272,7 @@ export const AdminFilterPane = () => {
                 </Box>
 
             </Box>
-        </React.Fragment>
+        </React.Fragment >
     );
 };
 
