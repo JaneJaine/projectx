@@ -11,8 +11,6 @@ import AdminFilterPane from '../components/AdminFilterPane';
 
 
 export class ReportPage extends Component {
-
-    
     render() {
         return (
             <React.Fragment>
@@ -26,12 +24,11 @@ export class ReportPage extends Component {
                     flex: "2",
                     flexDirection: 'column'
                 }}>
-                    <NavbarAdmin />
-                    <AdminFilterPane/>
+                    <NavbarAdmin/>
+                    <AdminFilterPane  token={this.props.token}/>
                 </Box>
             </React.Fragment>
         )
     }
 }
-
 export default ReportPage
