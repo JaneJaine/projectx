@@ -26,23 +26,39 @@ export const AdminFilterPane = () => {
         console.log(e.target.value)
         console.log(selectedStatus)
 
+        if (e.target.value === "Alle") {
+            setSelectedStatus("Alle")
+            console.log(e.target.value)
+            console.log("Inside Alle Abfrage")
+            console.log(selectedStatus)
+        }
+
+        if (e.target.value === "Nicht bearbeitet") {
+            setSelectedStatus("In Bearbeitung")
+            console.log(e.target.value)
+            console.log("Inside in Bearbeitung Abfrage")
+            console.log(selectedStatus)
+        }
+
         if (e.target.value === "Fertig") {
             setSelectedStatus("Fertig")
             console.log(e.target.value)
             console.log("Inside Fertig Abfrage")
+            console.log(selectedStatus)
         }
 
-        if (e.target.value === "in Bearbeitung") {
-            setSelectedStatus("in Bearbeitung")
+        if (e.target.value === "In Bearbeitung") {
+            setSelectedStatus("In Bearbeitung")
             console.log(e.target.value)
             console.log("Inside in Bearbeitung Abfrage")
+            console.log(selectedStatus)
         }
 
     }
 
     const setFilter = () => {
         console.log(selectedStatus + " useFilterFunction")
-        setMangel(mangel.filter((mangel) => mangel.status === selectedType))
+        setMangel(mangel.filter((mangel) => mangel.status === selectedStatus))
     };
 
 
@@ -111,13 +127,6 @@ export const AdminFilterPane = () => {
         console.log(data)
 
         setMangel(data)
-        console.log(mangel)
-        // console.log(mangel[0])
-        // console.log(mangel[1])
-        // console.log(mangel[2])
-        console.log(mangel[0].type)
-        console.log(mangel[0].id)
-
 
     }
 
@@ -158,9 +167,9 @@ export const AdminFilterPane = () => {
                             />
 
 
-                            <AdminFilter filterItems={["Nicht bearbeitet", "in Bearbeitung", "Fertig"]}
+                            <AdminFilter filterItems={["Alle","Nicht bearbeitet","In Bearbeitung","Fertig"]}
                                 dropDownName="Status"
-                                defaultItem="1"
+                                defaultItem = {selectedStatus}
                                 onChangeFunction={changeStatus} />
 
                             <SearchBarAsynchronous onChangeFunction={setSelectedPlz} />
