@@ -7,6 +7,7 @@ import ChangeStatusPane from "./ChangeStatusPane";
 import { Box, Stack } from "@mui/material";
 import CustomButton from "./CustomButton";
 import { useEffect } from "react";
+import { CenterFocusStrong } from "@mui/icons-material";
 
 export const AdminFilterPane = () => {
 
@@ -238,17 +239,22 @@ export const AdminFilterPane = () => {
 
                                     <Box
                                         sx={{
-                                            width: 300,
-                                            height: 300,
-                                            backgroundColor: 'primary.dark',
+                                            width: 150,
+                                            height: 150,
+                                            backgroundColor: '#BFD9F4',
+                                            p: 3,
+                                            m: 4,
+                                            alignItems: "center",
+                                            justifyContent: "center",
                                             '&:hover': {
-                                                backgroundColor: 'primary.main',
-                                                opacity: [0.9, 0.8, 0.7],
+                                                backgroundColor: '#D3E4F6',
+                                                
+                                                
                                             },
                                         }}
                                     > 
                                      <AdminFilter filterItems={["Alle", "Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
-                                        dropDownName="Status"
+                                        dropDownName="Status Ändern"
                                         defaultItem={selectedStatus}
                                         onChangeFunction={changeStatus} />
                                     </Box>
