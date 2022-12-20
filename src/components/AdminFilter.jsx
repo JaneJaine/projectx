@@ -8,9 +8,12 @@ import DropdownList from "react-widgets/DropdownList";
 export default function AdminFilter({ filterItems, dropDownName, defaultItem, onChangeFunction }) {
 
     const [idCount, setIdCount] = useState(0);
-    const addIdCount = () => { setIdCount(idCount = idCount + 1) };
+
     const [selects, setSelected] =useState();
     // const getValues = () => value;
+    const [type, setType] = useState();
+    const showType =() => {}
+  
    
     
 
@@ -22,16 +25,11 @@ export default function AdminFilter({ filterItems, dropDownName, defaultItem, on
             </InputLabel>
             <NativeSelect
                onChange = {onChangeFunction}
-               // onChange={e=>setSelected(e.target.value)}
-                defaultValue={defaultItem}
-                inputProps={{
-                    name: 'age',
-                    id: 'uncontrolled-native',
-                }}
+            
             >
                     {
                         filterItems.map((item) => (
-                            <option value = {idCount}> {item} </option>
+                            <option> {item} </option>
                             
                         ))
                     }
