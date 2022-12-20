@@ -8,32 +8,118 @@ import { useEffect } from "react";
 
 export const AdminFilterPane = () => {
 
-    useEffect(() => {searchAllDR();},[]);
+    const typeArray = ["Alle", "Defekt", "Verschmutzung", "Parkverstoß", "Anderes"];
+    useEffect(() => { searchAllDR(); }, []);
     const [filterState, setFilterState] = useState(false);
     const handleFilterTrue = () => searchAllDR;
     const handleFilterFalse = () => { setFilterState(false) };
     const [mangel, setMangel] = useState([]);
     const API_URL = "localhost:8080/api/v1/damageReport/getAllDamageReports";
-    const [selectedType, setSelectedType] = useState("Defekt");
+    const [selectedType, setSelectedType] = useState();
     const [selectedStatus, setSelectedStatus] = useState();
     const [selectedPlz, setSelectedPlz] = useState();
     // && mangel.status.includes({selectedStatus})
     // && mangel.location.includes({selectedPlz})
 
-    const changeType = (e) => {
-      setSelectedType(e.target.value)
-      console.log(e.target.value)
-      console.log(mangel[0].type)
+    const changeStatus = (e) => {
+        console.log("Change status war hier")
+        console.log(e.target.value)
+        console.log(selectedStatus)
+
+        if (e.target.value === "Alle") {
+            setSelectedStatus("Alle")
+            console.log(e.target.value)
+            console.log("Inside Alle Abfrage")
+            console.log(selectedStatus)
+        }
+
+        if (e.target.value === "Nicht bearbeitet") {
+            setSelectedStatus("In Bearbeitung")
+            console.log(e.target.value)
+            console.log("Inside in Bearbeitung Abfrage")
+            console.log(selectedStatus)
+        }
+
+        if (e.target.value === "Fertig") {
+            setSelectedStatus("Fertig")
+            console.log(e.target.value)
+            console.log("Inside Fertig Abfrage")
+            console.log(selectedStatus)
+        }
+
+        if (e.target.value === "In Bearbeitung") {
+            setSelectedStatus("In Bearbeitung")
+            console.log(e.target.value)
+            console.log("Inside in Bearbeitung Abfrage")
+            console.log(selectedStatus)
+        }
+
+    }
+
+    const setFilter = () => {
+        console.log(selectedStatus + " useFilterFunction")
+        setMangel(mangel.filter((mangel) => mangel.status === selectedStatus))
     };
 
-    const useFilter = () => {setMangel(mangel.filter((mangel)=>mangel.type.includes({selectedType})))};
-    // setMangel({
-    //   mangel : useFilter
-    // })
+
+    const changeType = (e) => {
+        console.log("Change Type: Hey ich war hier")
+        const readValue = e.target.value
+        console.log(readValue.type + "type")
+        console.log(e.target.value)
+        console.log(setSelectedType)
+        console.log(mangel)
 
 
-    //alle Daten werden beim Laden der Seite automatisch geladen
-    
+
+        if (e.target.value === "Alle") {
+
+            searchAllDR()
+
+        }
+
+        if (e.target.value === "Defekt") {
+            searchAllDR()
+            setSelectedType("Defekt")
+            setFilter()
+            console.log(selectedType + " :selectedType")
+
+        }
+
+
+        if (e.currentTarget.value === "Verschmutzung") {
+
+            setSelectedType("Verschmutzung")
+            console.log(selectedType + " :selectedType")
+        }
+
+        if (e.target.value === "Parkverstoß") {
+
+            setSelectedType("Parkverstoß")
+            console.log(selectedType + " :selectedType")
+
+        }
+
+        if (e.target.value === "Anderes") {
+
+            setSelectedType("Anderes")
+            console.log(selectedType + "4")
+
+        }
+
+    };
+
+    // const setFilter = () => {
+    //     console.log(selectedType +" useFilterFunction")
+    //     setMangel(mangel.filter((mangel)=>mangel.type === selectedType))};
+
+
+    const resetFilter = () => {
+        searchAllDR()
+    };
+
+
+
 
     const searchAllDR = async () => {
         const response = await fetch('http://localhost:8080/api/v1/damageReport/getAllDamageReports');
@@ -41,14 +127,7 @@ export const AdminFilterPane = () => {
         console.log(data)
 
         setMangel(data)
-        console.log(mangel)
-        // console.log(mangel[0])
-        // console.log(mangel[1])
-        // console.log(mangel[2])
-        console.log(mangel[0].type)
-        console.log(mangel[0].id)
 
-        
     }
 
     return (
@@ -81,26 +160,26 @@ export const AdminFilterPane = () => {
                             <h1 >Admin View </h1>
 
 
-                            <AdminFilter filterItems={["Alle", "Defekt", "Verschmutzung", "Parkverstoß", "Anderes"]}
+                            <AdminFilter filterItems={typeArray}
                                 dropDownName="Mangelart"
-                                defaultItem= {selectedType} 
+                                defaultItem={selectedType}
                                 onChangeFunction={changeType}
-                                />
-                            
+                            />
 
-                            <AdminFilter filterItems={["Nicht bearbeitet", "in Bearbeitung", "Fertig"]}
+
+                            <AdminFilter filterItems={["Alle","Nicht bearbeitet","In Bearbeitung","Fertig"]}
                                 dropDownName="Status"
-                                defaultItem="1" 
-                                onChangeFunction={setSelectedStatus}/>
+                                defaultItem = {selectedStatus}
+                                onChangeFunction={changeStatus} />
 
-                            <SearchBarAsynchronous onChangeFunction={setSelectedPlz}/>
+                            <SearchBarAsynchronous onChangeFunction={setSelectedPlz} />
 
 
                         </Stack>
 
                         <Stack spacing={1}>
-                            <CustomButton backgroundColor="#152238" color="#ffffff" buttonText="Filter" onClickFunction={useFilter} />
-                            <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Rückgängig" onClickFunction={searchAllDR} />
+                            <CustomButton backgroundColor="#152238" color="#ffffff" buttonText="Filter" onClickFunction={setFilter} />
+                            <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Rückgängig" onClickFunction={resetFilter} />
 
                         </Stack>
                     </Stack>
@@ -112,8 +191,8 @@ export const AdminFilterPane = () => {
                         minWidth: 200,
                         maxWidth: 1361,
                         width: 1361,
-                        flexDirection : "row"
-                    
+                        flexDirection: "row"
+
 
                     }}>
                     {mangel.length > 0 ? (
