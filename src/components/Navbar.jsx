@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import HomeIcon from "@mui/icons-material/Home";
@@ -109,6 +109,9 @@ export const Navbar = () => {
         },
     }));
 
+    const handleLogout = () => {
+        setShowAdminButton(true);
+    }
     return (
         <NavbarContainer>
             <Box
@@ -151,17 +154,17 @@ export const Navbar = () => {
                     justifyContent: "center",
                     gap: "1rem",
                 }}>
-               {(showAdminButton) ? (
-                <Login setShowAdminButton = {setShowAdminButton} /> 
-               ):(
-                <React.Fragment>
-                   <Link to="/" style={{textDecoration: 'none'}}>
-                    <CustomButton /*onClickFunction={}*/ backgroundColor={"red"} buttonText={"Logout"} > </CustomButton>
-                 </Link>
-                </React.Fragment>
-               )
-               } 
-               </Box>
+                {(showAdminButton) ? (
+                    <Login setShowAdminButton={setShowAdminButton} />
+                ) : (
+                    <React.Fragment>
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            <CustomButton onClickFunction={handleLogout} backgroundColor={"red"} buttonText={"Logout"} > </CustomButton>
+                        </Link>
+                    </React.Fragment>
+                )
+                }
+            </Box>
         </NavbarContainer>
     );
 };
