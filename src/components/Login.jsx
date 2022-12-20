@@ -1,4 +1,4 @@
-import { Dialog, DialogTitle, DialogActions, Button, DialogContent, DialogContentText, TextField } from '@mui/material';
+import { Dialog, DialogTitle, DialogActions, Button, DialogContent, DialogContentText, TextField, Alert, Collapse } from '@mui/material';
 import React, { useState } from 'react';
 import CustomButton from "./CustomButton";
 import { useNavigate } from 'react-router-dom';
@@ -13,8 +13,8 @@ export default function Login({ setShowAdminButton, token, setToken }) {
         usermail: "",
         password: ""
     })
-    const [error, setError] = useState();
-    const handleShowAdminButton = () => { setShowAdminButton(false); console.log("Change") };
+    var [error, setError] = useState(false);
+    const handleShowAdminButton = () => { setShowAdminButton(false);};
     const handleLogin = () => {
         fetch('http://localhost:8080/api/v1/damageReport/adminLogin', {
             headers: {
@@ -25,9 +25,12 @@ export default function Login({ setShowAdminButton, token, setToken }) {
         }).then(res => {
             if (res.status === 200) {
                 handleShowAdminButton();
+                setError(false);
+                error=false;
                 return res.text();
-            } else if (res.status === 423) {
-                setError( true );
+            } else{
+                setError(true);
+                error=true;
             }
             console.log(res.status)
         })
@@ -53,6 +56,11 @@ export default function Login({ setShowAdminButton, token, setToken }) {
                     <DialogContentText>
                         Um zur Mitarbeiter-Ansicht Zugang zu bekommen, melden Sie sich bitte an.
                     </DialogContentText>
+                    <Collapse in={error}>
+                        <Alert sx={{ mb: 2 }} severity="error">
+                            Bitte überprüfen Sie Ihre Eingaben.
+                        </Alert>
+                    </Collapse>
                     <TextField
                         margin="dense"
                         id="mail"
