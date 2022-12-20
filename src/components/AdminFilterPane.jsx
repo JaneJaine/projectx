@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AdminFilter from '../components/AdminFilter';
 import SearchBarAsynchronous from '../components/AsynchronousSerachBar';
 import MangelCard from "./MangelCard";
+import MangelBox from "./MangelBox";
 import { Box, Stack } from "@mui/material";
 import CustomButton from "./CustomButton";
 import { useEffect } from "react";
@@ -21,7 +22,7 @@ export const AdminFilterPane = () => {
     // && mangel.status.includes({selectedStatus})
     // && mangel.location.includes({selectedPlz})
 
-    const [cardMangel, setCardMangel] = useState( { id:"", type:"", status:"", username:"", usermail:"", user:"", description:"", image:"", location:"" });
+    const [cardMangel, setCardMangel] = useState({ id: "", type: "", status: "", username: "", usermail: "", user: "", description: "", image: "", location: "" });
     const [showOneCard, setShowOneCard] = useState(false)
 
     const bearbeiten = (e) => {
@@ -178,9 +179,9 @@ export const AdminFilterPane = () => {
                             />
 
 
-                            <AdminFilter filterItems={["Alle","Nicht bearbeitet","In Bearbeitung","Fertig"]}
+                            <AdminFilter filterItems={["Alle", "Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
                                 dropDownName="Status"
-                                defaultItem = {selectedStatus}
+                                defaultItem={selectedStatus}
                                 onChangeFunction={changeStatus} />
 
                             <SearchBarAsynchronous onChangeFunction={setSelectedPlz} />
@@ -206,20 +207,42 @@ export const AdminFilterPane = () => {
 
 
                     }}>
-                    {mangel.length > 0 ? (
-                        <div className="container">
-                            {mangel.map((iteration_mangel) => (
-                                //dynamic looping
-                                <MangelCard mangel={iteration_mangel} /* onClickBearbeitenFunction={bearbeiten} */  setCardMangel = {setCardMangel} cardMangel = {cardMangel} setShowOneCard = {setShowOneCard}/>
-                                //each loop creates a MangelCard
-                            ))}
+                    {(showOneCard === false) ? (
+                        <div>
+                            {
+                                mangel.length > 0 ? (
+                                    <div className="containerMangel">
+                                        {mangel.map((iteration_mangel) => (
+                                            //dynamic
+                                            <MangelCard mangel={iteration_mangel} /* onClickBearbeitenFunction={bearbeiten} */ setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
+                                            //each loop creates a MangelCard
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="empty">
+                                        <h2> Keine Mängel gefunden</h2>
+                                    </div>
+                                )
+                            }
                         </div>
                     ) : (
-                        <div className="empty">
-                            <h2> Keine Mängel gefunden</h2>
-                        </div>
-                    )}
 
+                        <div>
+
+                            <div className="containerMangel">
+                                <React.Fragment>
+                                    <MangelBox mangel={cardMangel} /* onClickBearbeitenFunction={bearbeiten} */ setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
+                                </React.Fragment>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    )
+                    }
 
                 </Box>
 
