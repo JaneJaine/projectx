@@ -211,7 +211,7 @@ export const AdminFilterPane = () => {
                         <div>
                             {
                                 mangel.length > 0 ? (
-                                    <div className="containerMangel">
+                                    <div className="containerCard">
                                         {mangel.map((iteration_mangel) => (
                                             //dynamic
                                             <MangelCard mangel={iteration_mangel} /* onClickBearbeitenFunction={bearbeiten} */ setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
@@ -229,10 +229,14 @@ export const AdminFilterPane = () => {
 
                         <div>
 
-                            <div className="containerMangel">
-                                <React.Fragment>
+                            <div className="containerBox">
+                                <div> 
                                     <MangelBox mangel={cardMangel} /* onClickBearbeitenFunction={bearbeiten} */ setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
-                                </React.Fragment>
+                                 </div>
+                                 <div>
+                                    <CustomButton backgroundColor="#ffffff"> </CustomButton>
+                                    </div>
+                              
                             </div>
 
                         </div>

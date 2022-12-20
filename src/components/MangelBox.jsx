@@ -12,7 +12,7 @@ const MangelBox = ({ mangel: { id, type, status, username, usermail, user, descr
         console.log(cardMangel)
     }
     return (
-        <div>
+        <div className='containerCard'>
             <div className="mangelBox" key={id}>
                 <div>
                     <p> {type} </p>
@@ -29,8 +29,9 @@ const MangelBox = ({ mangel: { id, type, status, username, usermail, user, descr
                     <h3> {location}</h3>
                 </div>
             </div>
-            <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Bearbeiten" onClickFunction={showOneMangelFalse} > </CustomButton>
-
+            <div>
+                <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Zurück" onClickFunction={showOneMangelFalse} > </CustomButton>
+            </div>
         </div>
     );
 }
