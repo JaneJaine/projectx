@@ -1,25 +1,85 @@
-import { Dialog } from '@mui/material';
+import { Dialog, DialogTitle, DialogActions, Button, DialogContent, DialogContentText, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import CustomButton from "./CustomButton";
 
-export default function Login({setShowAdminButton} ) {
+export default function Login({ setShowAdminButton }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => { setShow(true); };
+    const [loginData, setLoginData] = useState({
+        usermail: "",
+        password: ""
+    })
+    const [error, setError] = useState();
+    const [token, setToken] = useState(null);
+    const handleShowAdminButton = () => { setShowAdminButton(false); console.log("Change") };
+    const handleLogin = () => {
+        fetch('http://localhost:8080/api/v1/damageReport/adminLogin', {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(loginData)
+        }).then(res => {
+            if (res.status === 200) {
+                handleShowAdminButton();
+                return res.text();
+            } else if (res.status === 423) {
+                setError( true );
+            }
+            console.log(res.status)
+        })
+            .then(data => {
+                if (!error) {
+                    setToken(data);
+                    console.log(data)
+                }
+            })
+            .catch(error => console.log('ERROR' + error))
 
-    const handleShowAdminButton = () => {setShowAdminButton(false); console.log("Change")};
-    
-   // const handleShowAdminButton = () => console.log('Clicked3');
+    }
+
     return (
         <React.Fragment>
             <CustomButton
                 backgroundColor="#0F1B4C"
                 color="#fff"
-                buttonText="Admin LogIn"
-                onClickFunction={handleShowAdminButton}
+                buttonText="Admin Login"
+                onClickFunction={handleShow}
             />
-            <Dialog show={show}></Dialog>
+            <Dialog open={show} onClose={handleClose}>
+                <DialogTitle>Login</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Um zur Mitarbeiter-Ansicht Zugang zu bekommen, melden Sie sich bitte an.
+                    </DialogContentText>
+                    <TextField
+                        margin="dense"
+                        id="mail"
+                        label="Email Address"
+                        type="email"
+                        fullWidth
+                        variant="standard"
+                        value={loginData.usermail}
+                        onChange={(e) => { setLoginData({ ...loginData, usermail: e.target.value }) }}
+                    />
+                    <TextField
+                        margin="dense"
+                        id="passord"
+                        label="Password"
+                        type="password"
+                        fullWidth
+                        variant="standard"
+                        value={loginData.password}
+                        onChange={(e) => { setLoginData({ ...loginData, password: e.target.value }) }}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Zurück</Button>
+                    <Button onClick={handleLogin}>Login</Button>
+                </DialogActions>
+            </Dialog>
         </React.Fragment>
     )
 }

@@ -17,8 +17,14 @@ const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
 const zipFrank = ["60306", "60308", "60310", "60311", "60312", "60313", "60314", "60316", "60318", "60320", "60322", "60323", "60325", "60326", "60327", "60329", "60385", "60386", "60388", "60389", "60431", "60433", "60435", "60437", "60438", "60439", "60486", "60487", "60488", "60489", "60528", "60529", "60549", "60594", "60596", "60598", "60599", "65929", "65931", "65933", "65934", "65936", "61352"]
 
 const CustomBox = styled(Box)(({ theme }) => ({
-  backgroundImage: "url(" + Background + ")",
-  minHeight: "80vh",
+  display: "flex",
+        justifyContent: "center",
+        gap: theme.spacing(3),
+        [theme.breakpoints.down("md")]: {
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+        },
 }
 ));
 
@@ -52,8 +58,8 @@ export default function Report() {
       alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
       hasError=false;
     }else{ */
-      setActiveStep(activeStep + 1);
-      //hasError=false;
+    setActiveStep(activeStep + 1);
+    //hasError=false;
     //}
   };
   const handleBack = () => {
@@ -86,7 +92,7 @@ export default function Report() {
   const requestData = new FormData();
   const [files, setFiles] = useState([]);
   const sendData = () => {
-    console.log("Files send"+ files)
+    console.log("Files send" + files)
     files.forEach((file, i) => {
       requestData.append("file", file);
     });
@@ -97,12 +103,12 @@ export default function Report() {
       usermail: submitData.userMail,
       username: submitData.userName,
     };
-    
-      requestData.append("damagereport", new Blob([JSON.stringify(jsonData)], { 
-        type: 'application/json'
-      }));
-      console.log(requestData.get("file"))
-    
+
+    requestData.append("damagereport", new Blob([JSON.stringify(jsonData)], {
+      type: 'application/json'
+    }));
+    console.log(requestData.get("file"))
+
     fetch('http://localhost:8080/api/v1/damageReport/addDamageReport', {
       method: 'POST',
       body: requestData,
@@ -191,66 +197,68 @@ export default function Report() {
     userMailError: null,
   });
   return (
-    <CustomBox>
-      <CssBaseline />
-      <Container component="main" maxWidth="md" sx={{ opacity: 0.9 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-          <Typography component="h1" variant="h4" align="center">
-            Mangelmelder
-          </Typography>
-          {(activeStep === steps.length) ? (
-            <React.Fragment>
-              <Confirmation success={success} data={data} />
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              {width <= 768 ? (
-                <React.Fragment>
-                  <Stepper activeStep={activeStep} orientation="vertical" sx={{ pt: 3, pb: 5 }}>
-                    {steps.map((label) => (
-                      <Step key={label}>
-                        <StepLabel>{label}</StepLabel>
-                        <StepContent>{getStepContent(activeStep)}</StepContent>
-                      </Step>
-                    ))}
-                  </Stepper>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-                    {steps.map((label) => (
-                      <Step key={label}>
-                        <StepLabel>{label}</StepLabel>
-                      </Step>
-                    ))}
-                  </Stepper>
-                  {getStepContent(activeStep)}
-                </React.Fragment>
-              )}
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Back
-                  </Button>
-                )}
-                {activeStep === steps.length - 1 ? (
-                  <Button
-                    variant="contained"
-                    onClick={handleSubmit}
-                    sx={{ mt: 3, ml: 1 }}
-                  >Absenden</Button>
+    <Box sx={{backgroundImage: "url(" + Background + ")", minHeight: "80vh"}}>
+      <CustomBox>
+        <CssBaseline />
+        <Container component="main" maxWidth="md" sx={{ opacity: 0.9 }}>
+          <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+            <Typography component="h1" variant="h4" align="center">
+              Mangelmelder
+            </Typography>
+            {(activeStep === steps.length) ? (
+              <React.Fragment>
+                <Confirmation success={success} data={data} />
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                {width <= 768 ? (
+                  <React.Fragment>
+                    <Stepper activeStep={activeStep} orientation="vertical" sx={{ pt: 3, pb: 5 }}>
+                      {steps.map((label) => (
+                        <Step key={label}>
+                          <StepLabel>{label}</StepLabel>
+                          <StepContent>{getStepContent(activeStep)}</StepContent>
+                        </Step>
+                      ))}
+                    </Stepper>
+                  </React.Fragment>
                 ) : (
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >Weiter</Button>
+                  <React.Fragment>
+                    <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+                      {steps.map((label) => (
+                        <Step key={label}>
+                          <StepLabel>{label}</StepLabel>
+                        </Step>
+                      ))}
+                    </Stepper>
+                    {getStepContent(activeStep)}
+                  </React.Fragment>
                 )}
-              </Box>
-            </React.Fragment>
-          )}
-        </Paper>
-      </Container>
-    </CustomBox>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  {activeStep !== 0 && (
+                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                      Back
+                    </Button>
+                  )}
+                  {activeStep === steps.length - 1 ? (
+                    <Button
+                      variant="contained"
+                      onClick={handleSubmit}
+                      sx={{ mt: 3, ml: 1 }}
+                    >Absenden</Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      onClick={handleNext}
+                      sx={{ mt: 3, ml: 1 }}
+                    >Weiter</Button>
+                  )}
+                </Box>
+              </React.Fragment>
+            )}
+          </Paper>
+        </Container>
+      </CustomBox>
+    </Box>
   );
 }

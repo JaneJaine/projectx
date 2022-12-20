@@ -8,7 +8,6 @@ export class ReportPage extends Component {
         return (
             <React.Fragment>
                 <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "100vh" }}>
-                    <Navbar />
                     <Report />
                 </Box>
             </React.Fragment>

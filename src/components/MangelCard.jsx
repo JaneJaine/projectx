@@ -12,7 +12,7 @@ const MangelCard = ({ mangel: {id, type, status, username, usermail, user, descr
             </div>
 
             <div>
-                <img src={require('/Users/lucaisaak/projectx/src/components/images/Frankfurt_Default_Image.jpeg')} />
+                {/* <img src={require('/Users/lucaisaak/projectx/src/components/images/Frankfurt_Default_Image.jpeg')} /> */}
             
             </div>
 

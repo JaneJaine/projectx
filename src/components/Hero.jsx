@@ -12,7 +12,6 @@ const Hero = () => {
         display: "flex",
         justifyContent: "center",
         gap: theme.spacing(5),
-        marginTop: theme.spacing(3),
         [theme.breakpoints.down("md")]: {
             flexDirection: "column",
             alignItems: "center",
@@ -34,7 +33,6 @@ const Hero = () => {
         <React.Fragment>
             <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "80vh" }}>
                 <Container>
-                    <Navbar />
                     <CustomBox>
                         <Box sx={{ flex: "1" }}>
                             <Typography variant="body2" sx={{ fontSize: "18px", color: "#687690", fontWeight: "500", mt: 10, mb: 4 }}>
