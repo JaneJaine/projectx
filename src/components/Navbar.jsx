@@ -20,7 +20,7 @@ import {
 import Login from "./Login";
 import CustomButton from "./CustomButton";
 
-export const Navbar = ({token, setToken}) => {
+export const Navbar = ({ token, setToken }) => {
     const [mobileMenu, setMobileMenu] = useState({
         left: false,
     });
@@ -111,6 +111,7 @@ export const Navbar = ({token, setToken}) => {
     }));
 
     const handleLogout = () => {
+        setToken(null);
         setShowAdminButton(true);
     }
     return (
@@ -160,7 +161,8 @@ export const Navbar = ({token, setToken}) => {
                 ) : (
                     <React.Fragment>
                         <Link to="/" style={{ textDecoration: 'none' }}>
-                            <CustomButton onClickFunction={handleLogout} backgroundColor={"red"} buttonText={"Logout"} > </CustomButton>
+                            <CustomButton onClickFunction={handleLogout} backgroundColor="#0F1B4C"
+                                color="#fff" buttonText={"Logout"} > </CustomButton>
                         </Link>
                     </React.Fragment>
                 )
