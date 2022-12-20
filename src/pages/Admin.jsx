@@ -26,7 +26,7 @@ export class ReportPage extends Component {
                     flex: "2",
                     flexDirection: 'column'
                 }}>
-                    <NavbarAdmin />
+                
                     <AdminFilterPane/>
                 </Box>
             </React.Fragment>
