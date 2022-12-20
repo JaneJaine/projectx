@@ -9,6 +9,7 @@ export default function AdminFilter({ filterItems, dropDownName, defaultItem, on
 
     const [idCount, setIdCount] = useState(0);
     const addIdCount = () => { setIdCount(idCount = idCount + 1) };
+    const [selects, setSelected] =useState();
     // const getValues = () => value;
    
     
@@ -20,8 +21,8 @@ export default function AdminFilter({ filterItems, dropDownName, defaultItem, on
                 {dropDownName}
             </InputLabel>
             <NativeSelect
-                // onChange={e=>setSelected(e.target.value)}
-                onChange={onChangeFunction}
+               onChange = {onChangeFunction}
+               // onChange={e=>setSelected(e.target.value)}
                 defaultValue={defaultItem}
                 inputProps={{
                     name: 'age',

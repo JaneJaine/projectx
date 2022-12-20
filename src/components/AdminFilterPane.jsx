@@ -14,13 +14,19 @@ export const AdminFilterPane = () => {
     const handleFilterFalse = () => { setFilterState(false) };
     const [mangel, setMangel] = useState([]);
     const API_URL = "localhost:8080/api/v1/damageReport/getAllDamageReports";
-    const [selectedType, setSelectedType] = useState();
+    const [selectedType, setSelectedType] = useState("Defekt");
     const [selectedStatus, setSelectedStatus] = useState();
     const [selectedPlz, setSelectedPlz] = useState();
     // && mangel.status.includes({selectedStatus})
     // && mangel.location.includes({selectedPlz})
 
-    const useFilter = mangel.filter((mangel)=>mangel.type.includes({selectedType}));
+    const changeType = (e) => {
+      setSelectedType(e.target.value)
+      console.log(e.target.value)
+      console.log(mangel[0].type)
+    };
+
+    const useFilter = () => {setMangel(mangel.filter((mangel)=>mangel.type.includes({selectedType})))};
     // setMangel({
     //   mangel : useFilter
     // })
@@ -77,8 +83,8 @@ export const AdminFilterPane = () => {
 
                             <AdminFilter filterItems={["Alle", "Defekt", "Verschmutzung", "Parkverstoß", "Anderes"]}
                                 dropDownName="Mangelart"
-                                defaultItem="1" 
-                                onChangeFunction={setSelectedType}
+                                defaultItem= {selectedType} 
+                                onChangeFunction={changeType}
                                 />
                             
 
@@ -110,7 +116,7 @@ export const AdminFilterPane = () => {
                     
 
                     }}>
-                    {mangel?.length > 0 ? (
+                    {mangel.length > 0 ? (
                         <div className="container">
                             {mangel.map((iteration_mangel) => (
                                 //dynamic looping
