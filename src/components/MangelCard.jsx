@@ -13,7 +13,7 @@ console.log(cardMangel)
 console.log(showOneCard)
 }
     return (
-        <div className="mangel" key={id}>
+        <div className="mangelCard" key={id}>
             <div>
                 <p> {type} </p>
             </div>

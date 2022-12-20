@@ -13,7 +13,7 @@ const MangelBox = ({ mangel: { id, type, status, username, usermail, user, descr
     }
     return (
         <div>
-            <div className="mangel" key={id}>
+            <div className="mangelBox" key={id}>
                 <div>
                     <p> {type} </p>
                 </div>
