@@ -186,7 +186,7 @@ export const AdminFilterPane = () => {
                                 defaultItem={selectedStatus}
                                 onChangeFunction={changeStatus} />
 
-                            <SearchBarAsynchronous onChangeFunction={setSelectedPlz} />
+                            {/* <SearchBarAsynchronous onChangeFunction={setSelectedPlz} /> */}
 
 
                         </Stack>
