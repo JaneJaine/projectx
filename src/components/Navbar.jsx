@@ -94,6 +94,7 @@ export const Navbar = () => {
     }));
 
     const NavbarContainer = styled(Container)(({ theme }) => ({
+        backgroundColor: "#E6F0FF",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
