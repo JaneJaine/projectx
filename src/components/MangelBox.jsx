@@ -4,10 +4,9 @@ import CustomButton from './CustomButton';
 
 
 
-const MangelCard = ({ mangel: { id, type, status, username, usermail, user, description, image, location }, onClickBearbeitenFunction, setCardMangel, cardMangel, setShowOneCard }) => {
+const MangelBox = ({ mangel: { id, type, status, username, usermail, user, description, image, location }, onClickBearbeitenFunction, setCardMangel, cardMangel, setShowOnecard }) => {
 
 const editCard = () => {setCardMangel({...cardMangel,id:id, type:type, status:status, username:username, usermail:usermail, user:user, decription:description, image:image, location:location})
-setShowOneCard(true)
 console.log("EditCard läuft")
 console.log(cardMangel)
 }
@@ -32,4 +31,4 @@ console.log(cardMangel)
     );
 }
 
-export default MangelCard;
+export default MangelBox;

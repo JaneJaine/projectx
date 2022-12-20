@@ -21,8 +21,14 @@ export const AdminFilterPane = () => {
     // && mangel.status.includes({selectedStatus})
     // && mangel.location.includes({selectedPlz})
 
-    const bearbeiten = () => {
+    const [cardMangel, setCardMangel] = useState( { id:"", type:"", status:"", username:"", usermail:"", user:"", description:"", image:"", location:"" });
+    const [showOneCard, setShowOneCard] = useState(false)
+
+    const bearbeiten = (e) => {
         console.log("Hey ich wurde geklickt")
+        // console.log(e.target.value)
+        // console.log(e.target.id)
+        console.log(cardMangel.id)
 
     }
 
@@ -204,7 +210,7 @@ export const AdminFilterPane = () => {
                         <div className="container">
                             {mangel.map((iteration_mangel) => (
                                 //dynamic looping
-                                <MangelCard mangel={iteration_mangel} onClickBearbeitenFunction={bearbeiten} />
+                                <MangelCard mangel={iteration_mangel} /* onClickBearbeitenFunction={bearbeiten} */  setCardMangel = {setCardMangel} cardMangel = {cardMangel} setShowOneCard = {setShowOneCard}/>
                                 //each loop creates a MangelCard
                             ))}
                         </div>

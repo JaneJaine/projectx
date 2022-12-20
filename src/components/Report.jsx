@@ -18,13 +18,13 @@ const zipFrank = ["60306", "60308", "60310", "60311", "60312", "60313", "60314",
 
 const CustomBox = styled(Box)(({ theme }) => ({
   display: "flex",
-        justifyContent: "center",
-        gap: theme.spacing(3),
-        [theme.breakpoints.down("md")]: {
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
-        },
+  justifyContent: "center",
+  gap: theme.spacing(3),
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+    alignItems: "center",
+    textAlign: "center",
+  },
 }
 ));
 
@@ -197,7 +197,7 @@ export default function Report() {
     userMailError: null,
   });
   return (
-    <Box sx={{backgroundImage: "url(" + Background + ")", minHeight: "80vh"}}>
+    <Box sx={{ backgroundImage: "url(" + Background + ")", minHeight: "80vh" }}>
       <CustomBox>
         <CssBaseline />
         <Container component="main" maxWidth="md" sx={{ opacity: 0.9 }}>
