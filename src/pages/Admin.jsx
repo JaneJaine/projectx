@@ -11,8 +11,6 @@ import AdminFilterPane from '../components/AdminFilterPane';
 
 
 export class ReportPage extends Component {
-
-    
     render() {
         return (
             <React.Fragment>
@@ -33,5 +31,4 @@ export class ReportPage extends Component {
         )
     }
 }
-
 export default ReportPage

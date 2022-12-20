@@ -1,8 +1,10 @@
 import { Dialog, DialogTitle, DialogActions, Button, DialogContent, DialogContentText, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import CustomButton from "./CustomButton";
+import { useNavigate } from 'react-router-dom';
 
-export default function Login({ setShowAdminButton }) {
+export default function Login({ setShowAdminButton, token, setToken }) {
+    const navigate = useNavigate();
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -12,7 +14,6 @@ export default function Login({ setShowAdminButton }) {
         password: ""
     })
     const [error, setError] = useState();
-    const [token, setToken] = useState(null);
     const handleShowAdminButton = () => { setShowAdminButton(false); console.log("Change") };
     const handleLogin = () => {
         fetch('http://localhost:8080/api/v1/damageReport/adminLogin', {
@@ -33,13 +34,11 @@ export default function Login({ setShowAdminButton }) {
             .then(data => {
                 if (!error) {
                     setToken(data);
-                    console.log(data)
+                    navigate('/admin');
                 }
             })
             .catch(error => console.log('ERROR' + error))
-
     }
-
     return (
         <React.Fragment>
             <CustomButton
