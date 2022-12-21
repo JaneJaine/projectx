@@ -33,9 +33,10 @@ const MangelCard = ({ mangel: { id, type, status, username, usermail, descriptio
             </div>
 
             <div>
-                <span> Status: {status}</span>
+        
                 <h3> {description}</h3>
-                <h3> {location}</h3>
+                <h3> {type}</h3>
+                <h3> {status}</h3>
                 <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Bearbeiten" onClickFunction={editCard} > </CustomButton>
             </div>
         </div>

@@ -14,9 +14,8 @@ export const AdminFilterPane = () => {
 
     const typeArray = ["Alle", "Defekt", "Verschmutzung", "Parkverstoß", "Anderes"];
     useEffect(() => { searchAllDR(); }, []);
-    const [filterState, setFilterState] = useState(false);
-    const handleFilterTrue = () => searchAllDR;
-    const handleFilterFalse = () => { setFilterState(false) };
+    const[allTypeSelected, setAllTypeSelected] = useState(true)
+    const[allStatusSelected, setAllStatusSelected] = useState(true)
     const [mangel, setMangel] = useState([]);
     const API_URL = "localhost:8080/api/v1/damageReport/getAllDamageReports";
     const [selectedType, setSelectedType] = useState();
@@ -39,41 +38,37 @@ export const AdminFilterPane = () => {
         console.log(selectedStatus)
 
         if (e.target.value === "Alle") {
-            setSelectedStatus("Alle")
+            setAllStatusSelected(true)
             searchAllDR()
-            console.log(e.target.value)
-            console.log("Inside Alle Abfrage")
-            console.log(selectedStatus)
+         
         }
 
         if (e.target.value === "Nicht bearbeitet") {
+            setAllStatusSelected(false)
             setSelectedStatus("Nicht bearbeitet")
-            console.log(e.target.value)
-            console.log("Inside in Nicht bearbeitet Abfrage")
-            console.log(selectedStatus)
+           
         }
 
         if (e.target.value === "Fertig") {
             setSelectedStatus("Fertig")
-            console.log(e.target.value)
-            console.log("Inside Fertig Abfrage")
-            console.log(selectedStatus)
+            setAllStatusSelected(false)
+           
         }
 
         if (e.target.value === "In Bearbeitung") {
             setSelectedStatus("In Bearbeitung")
-            console.log(e.target.value)
-            console.log("Inside in Bearbeitung Abfrage")
-            console.log(selectedStatus)
+            setAllStatusSelected(false)
+            
         }
 
     }
 
-    const setFilter = () => {
-        console.log(selectedStatus + " useFilterFunction")
-        setMangel(mangel.filter((mangel) => mangel.status === selectedStatus))
-    };
+  
 
+    // const setFilter = () => {
+    //     console.log(selectedStatus + " useFilterFunction")
+    //     setMangel(mangel.filter((mangel) => mangel.status === selectedStatus && mangel.type === selectedType))
+    // };
 
     const changeType = (e) => {
         console.log("Change Type: Hey ich war hier")
@@ -86,29 +81,28 @@ export const AdminFilterPane = () => {
 
 
         if (e.target.value === "Alle") {
-
             searchAllDR()
-
+            setAllTypeSelected(true)
         }
 
         if (e.target.value === "Defekt") {
             searchAllDR()
             setSelectedType("Defekt")
-            setFilter()
-            console.log(selectedType + " :selectedType")
-
+            setAllTypeSelected(false)
+            
         }
-
 
         if (e.currentTarget.value === "Verschmutzung") {
 
             setSelectedType("Verschmutzung")
+            setAllTypeSelected(false)
             console.log(selectedType + " :selectedType")
         }
 
         if (e.target.value === "Parkverstoß") {
 
             setSelectedType("Parkverstoß")
+            setAllTypeSelected(false)
             console.log(selectedType + " :selectedType")
 
         }
@@ -124,9 +118,39 @@ export const AdminFilterPane = () => {
 
 
 
+
     const resetFilter = () => {
         searchAllDR()
     };
+
+    const setFilter = () => {
+        console.log("Willkommen im SetFilter")
+        if(allStatusSelected === true && allTypeSelected === true) {
+            console.log("Hallo in der 1. If abfrage")
+            searchAllDR()
+
+        }
+
+        else if (allStatusSelected !== true && allTypeSelected === true) {
+            setMangel(mangel.filter((mangel) => mangel.status === selectedStatus))
+            console.log("Hallo in der 2. If abfrage")
+
+        }
+
+        else if (allStatusSelected === true && allTypeSelected !== true) {
+            setMangel(mangel.filter((mangel) => mangel.type === selectedType))
+            console.log("Hallo in der 3. If abfrage")
+
+        }
+        else  {
+            
+            setMangel(mangel.filter((mangel) => mangel.status === selectedStatus && mangel.type === selectedType))
+            console.log("Hallo in der 4. If abfrage")
+
+        }
+      
+    };
+
 
 
 
