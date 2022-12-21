@@ -23,6 +23,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin token={token} />} />
             <Route path="/confirmation" element={<Confirmation />} />
+            <Route path="/impressum" element={<Confirmation />} />
             <Route element={<NoMatch />}></Route>
           </Routes>
         </BrowserRouter>
