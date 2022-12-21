@@ -80,15 +80,16 @@ const MangelBox = ({
                 </div>
             </div>
             <div>
+            
 
                 <Box
                     sx={{
                         borderRadius: "9px",
-                        width: 150,
-                        height: 220,
+                        width: 180,
+                        height: 170,
                         backgroundColor: '#BFD9F4',
                         p: 3,
-                        m: 4,
+                        m: 3,
                         alignItems: "center",
                         justifyContent: "center",
                         '&:hover': {
@@ -101,14 +102,16 @@ const MangelBox = ({
                     <AdminFilter filterItems={["Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
                         dropDownName="Status Ändern"
                         defaultItem={status}
-                        onChangeFunction={changeStatusCall} />
+                        onChangeFunction={changeStatusCall} 
+                        marginLeft="20px"/>
 
-                    <CustomButton backgroundColor="#957DAD" color="#ffffff" marginTop="75px"
-                        buttonText="Status setzen" onClickFunction={changeStatusBackend} />
+                    <CustomButton backgroundColor="#957DAD" color="#ffffff" marginTop="25px"
+                        buttonText="Status setzen" onClickFunction={changeStatusBackend} minWidth={170} marginLeft="4px"/>
 
                     <CustomButton backgroundColor="#957DAD" color="#ffffff" marginTop="5px"
-                        buttonText="Meldung Löschen" onClickFunction={changeStatusBackend} />
+                        buttonText="Meldung Löschen" onClickFunction={changeStatusBackend}minWidth={170} marginLeft="4px"/>
                 </Box>
+                
 
 
 
