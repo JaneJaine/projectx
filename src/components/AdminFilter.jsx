@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { NativeSelect } from '@mui/material';
 import DropdownList from "react-widgets/DropdownList"; 
 
-export default function AdminFilter({ filterItems, dropDownName, defaultItem, onChangeFunction }) {
+export default function AdminFilter({ filterItems, dropDownName, defaultItem, onChangeFunction, marginLeft }) {
 
     const [idCount, setIdCount] = useState(0);
 
@@ -19,11 +19,12 @@ export default function AdminFilter({ filterItems, dropDownName, defaultItem, on
 
 
     return (
-        <FormControl style={{ maxWidth: 300 }} >
+        <FormControl style={{ maxWidth: 300, marginLeft: marginLeft }} >
             <InputLabel variant="standard" htmlFor="uncontrolled-native">
                 {dropDownName}
             </InputLabel>
             <NativeSelect
+            defaultValue={defaultItem}
                onChange = {onChangeFunction}
             
             >

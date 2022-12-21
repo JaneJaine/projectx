@@ -39,7 +39,7 @@
 }
 .mangelCard {
   width: 250px;
-  height: 400px;
+  height: 350px;
   margin: 2.0rem;
   background-color: #00044b;
 
@@ -213,4 +213,14 @@
   align-items: center;
   flex-wrap: wrap;
 }
+/* .container {
+  width: 100%;
+  margin-top: 3rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+} */
 
