@@ -50,9 +50,11 @@ const MangelBox = ({
 
     };
 
+    const idDelete = "8fa212bb-1815-41c1-8a07-af47afbea1cc"
+
     const deleteReportById = () => {
 
-        fetch(`http://localhost:8080/api/v1/damageReport/deleteDamageReportById//${id}`, {
+        fetch(`http://localhost:8080/api/v1/damageReport/deleteDamageReportById/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,9 +74,7 @@ const MangelBox = ({
 
     };
 
-    const deleteMangelById = () => {
-
-    }
+    
     const showOneMangelFalse = () => {
         setShowOneCard(false)
         console.log("showOneMangelFalse läuft")
@@ -137,7 +137,7 @@ const MangelBox = ({
                         buttonText="Status ändern" onClickFunction={changeStatusBackend} minWidth={170} marginLeft="4px" />
 
                     <CustomButton backgroundColor="#957DAD" color="#ffffff" marginTop="5px"
-                        buttonText="Meldung Löschen" onClickFunction={deleteMangelById} minWidth={170} marginLeft="4px" />
+                        buttonText="Meldung Löschen" onClickFunction={deleteReportById} minWidth={170} marginLeft="4px" />
                 </Box>
 
 
