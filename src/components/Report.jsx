@@ -49,28 +49,27 @@ export default function Report() {
   //sets the active step for navigation through components
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
-    /* switch (activeStep) {
+    switch (activeStep) {
       case 0:
-        if (validationError.streetError || validationError.strNrError || validationError.zipError)
+        if ((validationError.streetError || validationError.strNrError || validationError.zipError) ||
+        validationError.streetError == null || validationError.strNrError == null || validationError.zipError == null)
           alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
         else setActiveStep(activeStep + 1);
         break;
       case 1:
-        if (validationError.descriptionError)
+        if (validationError.descriptionError || validationError.descriptionError == null)
           alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
-        else if (files == null) setFilesNull(true);
+        else if (files == null) {setFilesNull(true); setActiveStep(activeStep + 1);}
         else setActiveStep(activeStep + 1);
         break;
       case 2:
-        if (validationError.firstNameError || validationError.lastNameError || validationError.userMailError)
+        if (validationError.firstNameError || validationError.lastNameError || validationError.userMailError ||
+          validationError.firstNameError == null || validationError.lastNameError == null || validationError.userMailError == null)
           alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
         else setActiveStep(activeStep + 1);
         break;
-      default: */
-      if(activeStep == 1 && files == null){
-        setFilesNull(true);
-      }
-    setActiveStep(activeStep + 1);
+      default:  setActiveStep(activeStep + 1);}
+   
   };
   const handleBack = () => {
     setActiveStep(activeStep - 1);
