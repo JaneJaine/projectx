@@ -15,9 +15,11 @@ console.log(cardMangel)
 console.log(showOneCard)
 console.log(image)
 }
+const imgurl = "f4be092d-1248-4456-84b5-5aed4eded96b.jpeg"
 
 
-const img_url = `../media/images/${image}`
+
+
     return (
         <div className="mangelCard" key={id}>
             <div>
@@ -25,8 +27,9 @@ const img_url = `../media/images/${image}`
             </div>
 
             <div>
-                 {/* <img src={require('/Users/lucaisaak/projectx/src/components/images/Frankfurt_Default_Image.jpeg')} />  */}
-                 <img src={require(`../media/images/${image}`)}/>
+               
+                <img src={require(`/Users/lucaisaak/projectx/src/components/images/${image}`)} />
+           
 
             </div>
 

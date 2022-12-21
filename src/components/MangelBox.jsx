@@ -9,7 +9,7 @@ import AdminFilter from './AdminFilter';
 const MangelBox = ({
     mangel: { id, type, status, username, usermail, description, image, location },
     onClickBearbeitenFunction, setCardMangel, cardMangel, setShowOneCard, selectedStatus,
-    changeStatus }) => {
+    changeStatus, searchAllDR }) => {
 
     const data = {
         id: id,
@@ -24,10 +24,12 @@ const MangelBox = ({
 
     const changeStatusCall = (e) => {
         changeStatus(e)
+
+
     }
 
     const changeStatusBackend = () => {
-        
+
         fetch(`http://localhost:8080/api/v1/damageReport/updateDamageReport/${id}`, {
             method: 'PUT',
             headers: {
@@ -41,16 +43,43 @@ const MangelBox = ({
             .catch((error) => {
                 console.error('Error:', error)
             })
+        searchAllDR()
 
-        console.log('Description: '+description)
-        console.log('usermail: ' +usermail)
-    
+        console.log('Description: ' + description)
+        console.log('usermail: ' + usermail)
+
     };
+
+    const deleteReportById = () => {
+
+        fetch(`http://localhost:8080/api/v1/damageReport/deleteDamageReportById//${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then((data) => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error)
+            })
+        searchAllDR()
+
+        console.log('Description: ' + description)
+        console.log('usermail: ' + usermail)
+
+    };
+
+    const deleteMangelById = () => {
+
+    }
     const showOneMangelFalse = () => {
         setShowOneCard(false)
         console.log("showOneMangelFalse läuft")
         console.log(cardMangel)
-        
+
     }
     return (
 
@@ -61,9 +90,8 @@ const MangelBox = ({
                         <p> {type} </p>
                     </div>
 
-                <div>
-                <img src={require(`../media/images/${image}`)}/>
-                    {/* <img src={require('/Users/lucaisaak/projectx/src/components/images/Frankfurt_Default_Image.jpeg')} /> */}
+                    <div>
+                        <img src={require(`/Users/lucaisaak/projectx/src/components/images/${image}`)} />
 
                     </div>
 
@@ -80,13 +108,13 @@ const MangelBox = ({
                 </div>
             </div>
             <div>
-            
+
 
                 <Box
                     sx={{
                         borderRadius: "9px",
                         width: 180,
-                        height: 170,
+                        height: 1,
                         backgroundColor: '#BFD9F4',
                         p: 3,
                         m: 3,
@@ -102,16 +130,16 @@ const MangelBox = ({
                     <AdminFilter filterItems={["Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
                         dropDownName="Status Ändern"
                         defaultItem={status}
-                        onChangeFunction={changeStatusCall} 
-                        marginLeft="20px"/>
+                        onChangeFunction={changeStatusCall}
+                        marginLeft="20px" />
 
                     <CustomButton backgroundColor="#957DAD" color="#ffffff" marginTop="25px"
-                        buttonText="Status setzen" onClickFunction={changeStatusBackend} minWidth={170} marginLeft="4px"/>
+                        buttonText="Status ändern" onClickFunction={changeStatusBackend} minWidth={170} marginLeft="4px" />
 
                     <CustomButton backgroundColor="#957DAD" color="#ffffff" marginTop="5px"
-                        buttonText="Meldung Löschen" onClickFunction={changeStatusBackend}minWidth={170} marginLeft="4px"/>
+                        buttonText="Meldung Löschen" onClickFunction={deleteMangelById} minWidth={170} marginLeft="4px" />
                 </Box>
-                
+
 
 
 
