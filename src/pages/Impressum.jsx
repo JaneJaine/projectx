@@ -7,9 +7,9 @@ export class NoMatch extends Component {
     return (
       <React.Fragment>
         <Box>
-          <h1>Contact</h1>
-          <Typography>Wir sind eine Gruppe von vier Studierenden, die Ihnen bei Fragen gerne zur Verfügung stehen.</Typography>
-          <Typography>Melden Sie sich gerne unter Tel: +49175 7948 2745</Typography>
+          <h1>Impressum</h1>
+          <Typography>Unser Kontakt bei geschäftlichen Anliegen.</Typography>
+          <Typography>Arkin Cenk Cip <br/>Luca Isaak <br/>Julian Gottfried <br/>Jana Walcher</Typography>
         </Box>
       </React.Fragment>
     )
