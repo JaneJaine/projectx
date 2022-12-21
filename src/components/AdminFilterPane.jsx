@@ -6,6 +6,7 @@ import MangelBox from "./MangelBox";
 import ChangeStatusPane from "./ChangeStatusPane";
 import { Box, Stack } from "@mui/material";
 import CustomButton from "./CustomButton";
+import CustomButton1 from "./CustomButton1";
 import { useEffect } from "react";
 import { CenterFocusStrong } from "@mui/icons-material";
 
@@ -20,37 +21,39 @@ export const AdminFilterPane = () => {
     const API_URL = "localhost:8080/api/v1/damageReport/getAllDamageReports";
     const [selectedType, setSelectedType] = useState();
     const [selectedStatus, setSelectedStatus] = useState();
-    const [selectedPlz, setSelectedPlz] = useState();
+  
+
     // && mangel.status.includes({selectedStatus})
     // && mangel.location.includes({selectedPlz})
 
     const [cardMangel, setCardMangel] = useState({ id: "", type: "", status: "", username: "", usermail: "", user: "", description: "", image: "", location: "" });
     const [showOneCard, setShowOneCard] = useState(false)
 
-    const bearbeiten = (e) => {
-        console.log("Hey ich wurde geklickt")
-        // console.log(e.target.value)
-        // console.log(e.target.id)
-        console.log(cardMangel.id)
 
-    }
+
+    const changeStatusBackend = () => {
+    
+        console.log("changeStatusBackend war hier")
+        console.log(selectedStatus)
+    };
 
     const changeStatus = (e) => {
         console.log("Change status war hier")
-        console.log(e.target.value)
+
         console.log(selectedStatus)
 
         if (e.target.value === "Alle") {
             setSelectedStatus("Alle")
+            searchAllDR()
             console.log(e.target.value)
             console.log("Inside Alle Abfrage")
             console.log(selectedStatus)
         }
 
         if (e.target.value === "Nicht bearbeitet") {
-            setSelectedStatus("In Bearbeitung")
+            setSelectedStatus("Nicht bearbeitet")
             console.log(e.target.value)
-            console.log("Inside in Bearbeitung Abfrage")
+            console.log("Inside in Nicht bearbeitet Abfrage")
             console.log(selectedStatus)
         }
 
@@ -123,9 +126,6 @@ export const AdminFilterPane = () => {
 
     };
 
-    // const setFilter = () => {
-    //     console.log(selectedType +" useFilterFunction")
-    //     setMangel(mangel.filter((mangel)=>mangel.type === selectedType))};
 
 
     const resetFilter = () => {
@@ -216,7 +216,7 @@ export const AdminFilterPane = () => {
                                     <div className="containerCard">
                                         {mangel.map((iteration_mangel) => (
                                             //dynamic
-                                            <MangelCard mangel={iteration_mangel} /* onClickBearbeitenFunction={bearbeiten} */ setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
+                                            <MangelCard mangel={iteration_mangel} setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
                                             //each loop creates a MangelCard
                                         ))}
                                     </div>
@@ -233,14 +233,14 @@ export const AdminFilterPane = () => {
 
                             <div className="containerCard">
                                 <div>
-                                    <MangelBox mangel={cardMangel} /* onClickBearbeitenFunction={bearbeiten} */ setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
+                                    <MangelBox mangel={cardMangel} setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
                                 </div>
                                 <div>
 
                                     <Box
                                         sx={{
                                             width: 150,
-                                            height: 150,
+                                            height: 160,
                                             backgroundColor: '#BFD9F4',
                                             p: 3,
                                             m: 4,
@@ -248,15 +248,18 @@ export const AdminFilterPane = () => {
                                             justifyContent: "center",
                                             '&:hover': {
                                                 backgroundColor: '#D3E4F6',
-                                                
-                                                
+
+
                                             },
                                         }}
-                                    > 
-                                     <AdminFilter filterItems={["Alle", "Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
-                                        dropDownName="Status Ändern"
-                                        defaultItem={selectedStatus}
-                                        onChangeFunction={changeStatus} />
+                                    >
+                                        <AdminFilter filterItems={["Alle", "Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
+                                            dropDownName="Status Ändern"
+                                            defaultItem={selectedStatus}
+                                            onChangeFunction={changeStatus} />
+
+                                        <CustomButton backgroundColor="#957DAD" color="#ffffff" marginTop="75px"
+                                            buttonText="Status setzen" onClickFunction={changeStatusBackend} />
                                     </Box>
 
 

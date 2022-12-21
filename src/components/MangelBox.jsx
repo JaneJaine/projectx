@@ -31,7 +31,8 @@ const MangelBox = ({ mangel: { id, type, status, username, usermail, user, descr
                 </div>
             </div>
             <div>
-                <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Zurück" onClickFunction={showOneMangelFalse} > </CustomButton>
+                <CustomButton  backgroundColor="#957DAD" 
+                color="#ffffff" buttonText="Zurück" onClickFunction={showOneMangelFalse} > </CustomButton>
             </div>
         </div>
     
