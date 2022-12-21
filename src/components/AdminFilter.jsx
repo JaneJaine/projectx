@@ -24,6 +24,7 @@ export default function AdminFilter({ filterItems, dropDownName, defaultItem, on
                 {dropDownName}
             </InputLabel>
             <NativeSelect
+            defaultValue={defaultItem}
                onChange = {onChangeFunction}
             
             >

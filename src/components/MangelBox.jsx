@@ -1,26 +1,35 @@
 import React from 'react';
 import CustomButton from './CustomButton';
-import { Box, Stack } from "@mui/material";
-import AdminFilter from '../components/AdminFilter';
+import { Box } from "@mui/material";
+import AdminFilter from './AdminFilter';
 
 
 
 
 const MangelBox = ({
-    mangel: { id, type, status, username, usermail, user, description, image, location },
+    mangel: { id, type, status, username, usermail, description, image, location },
     onClickBearbeitenFunction, setCardMangel, cardMangel, setShowOneCard, selectedStatus,
     changeStatus }) => {
 
-    const data = {}
+    const data = {
+        id: id,
+        type: type,
+        status: selectedStatus,
+        username: username,
+        usermail: usermail,
+        description: description,
+        image: image,
+        location: location
+    }
 
-
-    const changeStatusCall = () => {
-        changeStatus()
+    const changeStatusCall = (e) => {
+        changeStatus(e)
     }
 
     const changeStatusBackend = () => {
-        fetch(`localhost:8080/api/v1/damageReport/updateDamageReport/${id}`, {
-            method: 'Put',
+        
+        fetch(`http://localhost:8080/api/v1/damageReport/updateDamageReport/${id}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -33,13 +42,15 @@ const MangelBox = ({
                 console.error('Error:', error)
             })
 
-        console.log("changeStatusBackend war hier")
-        console.log(selectedStatus)
+        console.log('Description: '+description)
+        console.log('usermail: ' +usermail)
+    
     };
     const showOneMangelFalse = () => {
         setShowOneCard(false)
         console.log("showOneMangelFalse läuft")
         console.log(cardMangel)
+        
     }
     return (
 
@@ -58,7 +69,7 @@ const MangelBox = ({
 
                     <div>
                         <span> Status: {status}</span>
-                        <h3> {description}</h3>
+                        <h3> Description: {description}</h3>
                         <h3> {location}</h3>
                         <h3>{status}</h3>
                     </div>
@@ -72,6 +83,7 @@ const MangelBox = ({
 
                 <Box
                     sx={{
+                        borderRadius: "9px",
                         width: 150,
                         height: 220,
                         backgroundColor: '#BFD9F4',
@@ -86,7 +98,7 @@ const MangelBox = ({
                         },
                     }}
                 >
-                    <AdminFilter filterItems={["Alle", "Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
+                    <AdminFilter filterItems={["Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
                         dropDownName="Status Ändern"
                         defaultItem={status}
                         onChangeFunction={changeStatusCall} />

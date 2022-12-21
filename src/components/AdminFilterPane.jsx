@@ -3,6 +3,7 @@ import AdminFilter from '../components/AdminFilter';
 import SearchBarAsynchronous from '../components/AsynchronousSerachBar';
 import MangelCard from "./MangelCard";
 import MangelBox from "./MangelBox";
+
 import ChangeStatusPane from "./ChangeStatusPane";
 import { Box, Stack } from "@mui/material";
 import CustomButton from "./CustomButton";
@@ -20,17 +21,17 @@ export const AdminFilterPane = () => {
     const API_URL = "localhost:8080/api/v1/damageReport/getAllDamageReports";
     const [selectedType, setSelectedType] = useState();
     const [selectedStatus, setSelectedStatus] = useState();
-  
+
 
     // && mangel.status.includes({selectedStatus})
     // && mangel.location.includes({selectedPlz})
 
-    const [cardMangel, setCardMangel] = useState({ id: "", type: "", status: "", username: "", usermail: "", user: "", description: "", image: "", location: "" });
+    const [cardMangel, setCardMangel] = useState({ id: "", type: "", status: "", username: "", usermail: "", description: "", image: "", location: "" });
     const [showOneCard, setShowOneCard] = useState(false)
 
 
 
-  
+
 
     const changeStatus = (e) => {
         console.log("Change status war hier")
@@ -228,11 +229,11 @@ export const AdminFilterPane = () => {
 
                             <div className="containerCard">
                                 <div>
-                                    <MangelBox 
-                                    mangel={cardMangel} setCardMangel={setCardMangel} cardMangel={cardMangel} 
-                                    setShowOneCard={setShowOneCard} showOneCard={showOneCard} 
-                                    selectedStatus={selectedStatus} 
-                                    changeStatus={changeStatus}
+                                    <MangelBox
+                                        mangel={cardMangel} setCardMangel={setCardMangel} cardMangel={cardMangel}
+                                        setShowOneCard={setShowOneCard} showOneCard={showOneCard}
+                                        selectedStatus={selectedStatus}
+                                        changeStatus={changeStatus}
                                     />
                                 </div>
 
