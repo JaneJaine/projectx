@@ -50,12 +50,12 @@ export default function Report() {
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
     switch (activeStep) {
-      case 0:
-        if ((validationError.streetError || validationError.strNrError || validationError.zipError) ||
-        validationError.streetError == null || validationError.strNrError == null || validationError.zipError == null)
-          alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
-        else setActiveStep(activeStep + 1);
-        break;
+      // case 0:
+      //   if ((validationError.streetError || validationError.strNrError || validationError.zipError) ||
+      //   validationError.streetError == null || validationError.strNrError == null || validationError.zipError == null)
+      //     alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
+      //   else setActiveStep(activeStep + 1);
+      //   break;
       case 1:
         if (validationError.descriptionError || validationError.descriptionError == null)
           alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");

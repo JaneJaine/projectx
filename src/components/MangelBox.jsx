@@ -8,7 +8,7 @@ import AdminFilter from './AdminFilter';
 
 const MangelBox = ({
     mangel: { id, type, status, username, usermail, description, image, location },
-    onClickBearbeitenFunction, setCardMangel, cardMangel, setShowOneCard, selectedStatus,
+    onClickBearbeitenFunction, setCardMangel, cardMangel, setShowOneCard, selectedStatus, resetFilter,
     changeStatus, searchAllDR }) => {
 
     const data = {
@@ -49,6 +49,11 @@ const MangelBox = ({
         console.log('usermail: ' + usermail)
 
     };
+
+    const zurueckButton =()=> {
+        showOneMangelFalse()
+        resetFilter()
+    }
 
     const idDelete = "8fa212bb-1815-41c1-8a07-af47afbea1cc"
 
@@ -104,7 +109,7 @@ const MangelBox = ({
                 </div>
                 <div>
                     <CustomButton backgroundColor="#957DAD"
-                        color="#ffffff" buttonText="Zurück" onClickFunction={showOneMangelFalse} marginLeft="400px" marginTop="90px"> </CustomButton>
+                        color="#ffffff" buttonText="Zurück" onClickFunction={zurueckButton} marginLeft="400px" marginTop="90px"> </CustomButton>
                 </div>
             </div>
             <div>

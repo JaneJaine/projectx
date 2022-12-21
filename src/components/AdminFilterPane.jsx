@@ -259,7 +259,7 @@ export const AdminFilterPane = () => {
                                         mangel={cardMangel} setCardMangel={setCardMangel} cardMangel={cardMangel}
                                         setShowOneCard={setShowOneCard} showOneCard={showOneCard}
                                         selectedStatus={selectedStatus}
-                                        changeStatus={changeStatus}
+                                        changeStatus={changeStatus} resetFilter={resetFilter}
                                     />
                                 </div>
 

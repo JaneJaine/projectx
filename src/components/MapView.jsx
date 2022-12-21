@@ -28,7 +28,7 @@ export default function MapView({ data, setData }) {
   return (
     <React.Fragment>
       <Typography variant="body1">Um Ihren Standort zu finden, klicken Sie bitte auf die Map.</Typography>
-      <MapContainer style={{ height: "40vh", width: "50vw" }} center={position} zoom={16} scrollWheelZoom={true}>
+      <MapContainer style={{ height: "40vh", width: "42vw" }} center={position} zoom={16} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
