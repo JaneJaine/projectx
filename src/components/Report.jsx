@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles';
 
 import Background from '../media/wallpaperFrankfurt.jpg';
 import Confirmation from '../pages/Confirmation';
-import noFile from '../media/no-image-icon.png';
+//import noFile from '../media/no-image-icon.png';
 
 //sets the steps for the progress bar
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
@@ -102,9 +102,7 @@ export default function Report() {
   const requestData = new FormData();
   const [files, setFiles] = useState();
   const sendData = () => {
-    if (files === null) {
-      setFiles(noFile);
-    }
+    
     requestData.append("file", files);
     const jsonData = {
       location: submitData.location,

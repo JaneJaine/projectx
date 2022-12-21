@@ -12,6 +12,7 @@ const MangelBox = ({ mangel: { id, type, status, username, usermail, user, descr
         console.log(cardMangel)
     }
     return (
+
         
         <div className='containerBox'>
             <div className="mangelBox" key={id}>

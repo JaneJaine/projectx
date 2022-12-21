@@ -32,6 +32,9 @@ export const AdminFilterPane = () => {
 
 
     const changeStatusBackend = () => {
+        fetch(`localhost:8080/api/v1/damageReport/updateDamageReport/${selectedStatus}`,{
+            method:'Put'
+        })
     
         console.log("changeStatusBackend war hier")
         console.log(selectedStatus)
