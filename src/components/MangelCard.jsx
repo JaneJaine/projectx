@@ -18,7 +18,7 @@ console.log(image)
 
 const imageId = "3d789f2a-2991-4c27-afcd-89fa228511ad.jpeg";
 
-const img_url = `/Users/lucaisaak/projectx/src/components/images/${image}`
+const img_url = `../media/images/${image}`
     return (
         <div className="mangelCard" key={id}>
             <div>
@@ -27,7 +27,7 @@ const img_url = `/Users/lucaisaak/projectx/src/components/images/${image}`
 
             <div>
                  {/* <img src={require('/Users/lucaisaak/projectx/src/components/images/Frankfurt_Default_Image.jpeg')} />  */}
-                 <img src={require(`/Users/lucaisaak/projectx/src/components/images/${image}`)}/>
+                 <img src={require(`../media/images/${image}`)}/>
 
             </div>
 
