@@ -1,7 +1,7 @@
 import {Button, styled} from '@mui/material';
 import React from 'react';
 
-const CustomButton = ({backgroundColor, color, buttonText, heroBtn, guideBtn, getStartedBtn, onClickFunction, marginTop, marginLeft, minWidth}) => {
+const CustomButton = ({backgroundColor, color, buttonText, heroBtn, guideBtn, getStartedBtn, onClickFunction, marginTop, marginLeft, minWidth, width}) => {
     const CustomButton = styled(Button)(({theme}) => ({
         backgroundColor: backgroundColor,
         color: color,
@@ -16,6 +16,7 @@ const CustomButton = ({backgroundColor, color, buttonText, heroBtn, guideBtn, ge
         marginTop: marginTop,
         marginLeft: marginLeft,
         minWidth: minWidth,
+        width: width,
         "&:hover":{
             backgroundColor: color,
             color: backgroundColor

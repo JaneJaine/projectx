@@ -190,9 +190,11 @@ export const AdminFilterPane = () => {
                         <Stack spacing={1}>
                             <CustomButton backgroundColor="#152238" color="#ffffff" buttonText="Filter" onClickFunction={setFilter} />
                             <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Rückgängig" onClickFunction={resetFilter} />
-
                         </Stack>
+                        
                     </Stack>
+                    <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Neu Laden" onClickFunction={resetFilter} width="130px" marginLeft="130px" marginTop="20px" />
+                  
                 </Box >
 
                 <Box sx=
