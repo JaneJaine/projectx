@@ -61,9 +61,9 @@ const MangelBox = ({
                         <p> {type} </p>
                     </div>
 
-                    <div>
-                        <img src={require(`/Users/lucaisaak/projectx/src/components/images/${image}`)} />
-                        {/* <img src={require('/Users/lucaisaak/projectx/src/components/images/Frankfurt_Default_Image.jpeg')} /> */}
+                <div>
+                <img src={require(`../media/images/${image}`)}/>
+                    {/* <img src={require('/Users/lucaisaak/projectx/src/components/images/Frankfurt_Default_Image.jpeg')} /> */}
 
                     </div>
 
