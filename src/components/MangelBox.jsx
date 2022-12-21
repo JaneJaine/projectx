@@ -12,6 +12,7 @@ const MangelBox = ({ mangel: { id, type, status, username, usermail, user, descr
         console.log(cardMangel)
     }
     return (
+
         
         <div className='containerBox'>
             <div className="mangelBox" key={id}>
@@ -20,6 +21,7 @@ const MangelBox = ({ mangel: { id, type, status, username, usermail, user, descr
                 </div>
 
                 <div>
+                <img src={require(`/Users/lucaisaak/projectx/src/components/images/${image}`)}/>
                     {/* <img src={require('/Users/lucaisaak/projectx/src/components/images/Frankfurt_Default_Image.jpeg')} /> */}
 
                 </div>
