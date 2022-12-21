@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Autocomplete, TextField, Typography, Grid, Button } from '@mui/material';
 import MultiFormData from './MultiFormData';
 
-export default function AddressForm({ data, setData, validationError, checkInput, files, setFiles }) {
+export default function AddressForm({ data, setData, validationError, checkInput, files, setFiles, filesNull }) {
   const detailOptions = [
     'Defekt', 'Verschmutzung', 'Parkverstoß', 'Anderes'
   ]
@@ -38,7 +38,7 @@ export default function AddressForm({ data, setData, validationError, checkInput
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-         { <MultiFormData files={files} setFiles={setFiles}/>}
+         { <MultiFormData files={files} setFiles={setFiles} filesNull={filesNull} />}
         </Grid>
         <Grid item xs={12}>
           <TextField

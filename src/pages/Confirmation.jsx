@@ -49,7 +49,7 @@ export default function Confirmation({ success, data }) {
                             <Typography variant='h6'>Bitte versuchen sie den Sendevorgang erneut. Wir bitten um Entschuldigung.</Typography>
                         </Grid>
                     </Grid>
-                    <Button onClick={handleFailure} color='error'>Nochmal abschicken</Button>
+                    {/* <Button onClick={handleFailure} color='error'>Nochmal abschicken</Button> */}
                     <Button onClick={handleSuccess}>Zurück zur Homepage</Button>
                 </React.Fragment>
             )}

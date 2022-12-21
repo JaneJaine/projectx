@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles';
 
 import Background from '../media/wallpaperFrankfurt.jpg';
 import Confirmation from '../pages/Confirmation';
+import noFile from '../media/no-image-icon.png';
 
 //sets the steps for the progress bar
 const steps = ['Ortsangabe', 'Details', 'Person', 'Bestätigung'];
@@ -18,13 +19,13 @@ const zipFrank = ["60306", "60308", "60310", "60311", "60312", "60313", "60314",
 
 const CustomBox = styled(Box)(({ theme }) => ({
   display: "flex",
-        justifyContent: "center",
-        gap: theme.spacing(3),
-        [theme.breakpoints.down("md")]: {
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
-        },
+  justifyContent: "center",
+  gap: theme.spacing(3),
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+    alignItems: "center",
+    textAlign: "center",
+  },
 }
 ));
 
@@ -36,7 +37,7 @@ export default function Report() {
       case 0:
         return <FormLocation data={data} setData={setData} validationError={validationError} checkInput={checkInput} />;
       case 1:
-        return <DetailForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} files={files} setFiles={setFiles} />;
+        return <DetailForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} files={files} setFiles={setFiles} filesNull={filesNull}/>;
       case 2:
         return <PersonalForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} />
       case 3:
@@ -48,23 +49,33 @@ export default function Report() {
   //sets the active step for navigation through components
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
-    /* var hasError = false;
-    for(const [key, value] of Object.entries(validationError)){
-      if(value == true || value == null){
-        hasError = true;
+    /* switch (activeStep) {
+      case 0:
+        if (validationError.streetError || validationError.strNrError || validationError.zipError)
+          alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
+        else setActiveStep(activeStep + 1);
+        break;
+      case 1:
+        if (validationError.descriptionError)
+          alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
+        else if (files == null) setFilesNull(true);
+        else setActiveStep(activeStep + 1);
+        break;
+      case 2:
+        if (validationError.firstNameError || validationError.lastNameError || validationError.userMailError)
+          alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
+        else setActiveStep(activeStep + 1);
+        break;
+      default: */
+      if(activeStep == 1 && files == null){
+        setFilesNull(true);
       }
-    }
-    if(hasError){
-      alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
-      hasError=false;
-    }else{ */
     setActiveStep(activeStep + 1);
-    //hasError=false;
-    //}
   };
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  const [filesNull, setFilesNull] = useState(true);
   //handles the data sharing between the steps
   const [data, setData] = useState({
     coordinates: '',
@@ -90,12 +101,12 @@ export default function Report() {
   const [success, setSuccess] = useState(null);
   //handles the sending of post request to backend and response validation
   const requestData = new FormData();
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState();
   const sendData = () => {
-    console.log("Files send" + files)
-    files.forEach((file, i) => {
-      requestData.append("file", file);
-    });
+    if (files === null) {
+      setFiles(noFile);
+    }
+    requestData.append("file", files);
     const jsonData = {
       location: submitData.location,
       type: submitData.type,
@@ -197,7 +208,7 @@ export default function Report() {
     userMailError: null,
   });
   return (
-    <Box sx={{backgroundImage: "url(" + Background + ")", minHeight: "80vh"}}>
+    <Box sx={{ backgroundImage: "url(" + Background + ")", minHeight: "80vh" }}>
       <CustomBox>
         <CssBaseline />
         <Container component="main" maxWidth="md" sx={{ opacity: 0.9 }}>

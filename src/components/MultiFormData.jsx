@@ -1,27 +1,21 @@
-import { List, ListItem } from "@mui/material";
-import React, { useState } from "react";
-function MultiFormData({files, setFiles}) {
-  const [fileList, setFileList] = useState(null);
+import { Button } from "@mui/material";
+import React, { useEffect } from "react";
+function MultiFormData({ files, setFiles, filesNull }) {
 
   const handleFileChange = (e) => {
-    setFileList(e.target.files);
-    console.log("File List "+fileList);
-    if (!fileList){
-    }else{
-      setFiles(fileList ? [...fileList] : []);
-      console.log("files: " + files);
-    }}
-
+    setFiles(e.target.value[0])
+    console.log(files)
+  }
+  if(filesNull){
+/*     document.getElementById("hiddenFile").value = ; */
+  }
+    
   return (
     <div>
-      <input type="file" onChange={handleFileChange} multiple />
-      <List>
-        {files.map((file, i) => (
-          <ListItem key={i}>
-            {file.name} - {file.type}
-          </ListItem>
-        ))}
-      </List>
+      <Button variant="contained">
+        <input type="file" onChange={(e) => handleFileChange(e)}/>
+      </Button>
+      <input type="file" id="hiddenFile" onChange={(e) => handleFileChange(e)} hidden/>
     </div>
   );
 }
