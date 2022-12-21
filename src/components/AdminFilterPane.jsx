@@ -6,7 +6,6 @@ import MangelBox from "./MangelBox";
 import ChangeStatusPane from "./ChangeStatusPane";
 import { Box, Stack } from "@mui/material";
 import CustomButton from "./CustomButton";
-import CustomButton1 from "./CustomButton1";
 import { useEffect } from "react";
 import { CenterFocusStrong } from "@mui/icons-material";
 
@@ -31,14 +30,7 @@ export const AdminFilterPane = () => {
 
 
 
-    const changeStatusBackend = () => {
-        fetch(`localhost:8080/api/v1/damageReport/updateDamageReport/${selectedStatus}`,{
-            method:'Put'
-        })
-    
-        console.log("changeStatusBackend war hier")
-        console.log(selectedStatus)
-    };
+  
 
     const changeStatus = (e) => {
         console.log("Change status war hier")
@@ -236,38 +228,12 @@ export const AdminFilterPane = () => {
 
                             <div className="containerCard">
                                 <div>
-                                    <MangelBox mangel={cardMangel} setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
-                                </div>
-                                <div>
-
-                                    <Box
-                                        sx={{
-                                            width: 150,
-                                            height: 160,
-                                            backgroundColor: '#BFD9F4',
-                                            p: 3,
-                                            m: 4,
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            '&:hover': {
-                                                backgroundColor: '#D3E4F6',
-
-
-                                            },
-                                        }}
-                                    >
-                                        <AdminFilter filterItems={["Alle", "Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
-                                            dropDownName="Status Ändern"
-                                            defaultItem={selectedStatus}
-                                            onChangeFunction={changeStatus} />
-
-                                        <CustomButton backgroundColor="#957DAD" color="#ffffff" marginTop="75px"
-                                            buttonText="Status setzen" onClickFunction={changeStatusBackend} />
-                                    </Box>
-
-
-
-
+                                    <MangelBox 
+                                    mangel={cardMangel} setCardMangel={setCardMangel} cardMangel={cardMangel} 
+                                    setShowOneCard={setShowOneCard} showOneCard={showOneCard} 
+                                    selectedStatus={selectedStatus} 
+                                    changeStatus={changeStatus}
+                                    />
                                 </div>
 
                             </div>
