@@ -2,13 +2,11 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
-
 function sleep(delay = 0) {
   return new Promise((resolve) => {
     setTimeout(resolve, delay);
   });
 }
-
 export default function SearchBarAsynchronous({onChangeFunction}) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
@@ -16,7 +14,6 @@ export default function SearchBarAsynchronous({onChangeFunction}) {
 
   React.useEffect(() => {
     let active = true;
-
     if (!loading) {
       return undefined;
     }
@@ -33,13 +30,11 @@ export default function SearchBarAsynchronous({onChangeFunction}) {
       active = false;
     };
   }, [loading]);
-
   React.useEffect(() => {
     if (!open) {
       setOptions([]);
     }
   }, [open]);
-
   return (
     <Autocomplete
       id="asynchronous-demo"
@@ -74,7 +69,6 @@ export default function SearchBarAsynchronous({onChangeFunction}) {
     />
   );
 }
-
 const zipData = [
  {title:"60306"}, {title:"60308"}, {title:"60310"}, {title:"60311"}, {title:"60312"},
  {title:"60313"}, {title:"60314"}, {title:"60316"}, {title:"60318"}, {title:"60320"},
@@ -85,7 +79,6 @@ const zipData = [
  {title:"60528"}, {title:"60529"}, {title:"60549"}, {title:"60594"}, {title:"60596"},
  {title:"60598"}, {title:"60599"}, {title:"65929"}, {title:"65931"}, {title:"65933"},
  {title:"65934"}, {title:"65936"}, {title:"61352"},
-
 ];
 
 

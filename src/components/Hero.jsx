@@ -7,7 +7,10 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 
+//creates the headline and the image on the homepage
+//is the homepage's main element
 const Hero = () => {
+    //component to set the styling of the hero component
     const CustomBox = styled(Box)(({ theme }) => ({
         display: "flex",
         justifyContent: "center",
@@ -18,7 +21,7 @@ const Hero = () => {
             textAlign: "center",
         },
     }));
-
+    //component used for the title
     const Title = styled(Typography)(({ theme }) => ({
         fontSize: "64px",
         color: "#000336",
@@ -28,7 +31,6 @@ const Hero = () => {
             fontSize: "40px",
         },
     }));
-
     return (
         <React.Fragment>
             <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "80vh" }}>

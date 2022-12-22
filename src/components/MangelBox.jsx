@@ -3,10 +3,8 @@ import CustomButton from './CustomButton';
 import { Box } from "@mui/material";
 import AdminFilter from './AdminFilter';
 const MangelBox = ({
-    mangel: { id, type, status, username, usermail, description, image, location },
-    onClickBearbeitenFunction, setCardMangel, cardMangel, setShowOneCard, selectedStatus,
+    mangel: { id, type, status, username, usermail, description, image, location }, setShowOneCard, selectedStatus,
     changeStatus, searchAllDR, authData }) => {
-
     const data = {
         id: id,
         type: type,
