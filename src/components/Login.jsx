@@ -22,7 +22,7 @@ export default function Login({ setShowAdminButton, authData, setAuthData }) {
     const handleClose = () => setShow(false);
     const handleShow = () => { setShow(true); };
     //changes the login button to the logout button
-    const handleShowAdminButton = () => { setShowAdminButton(false);};
+    const handleShowAdminButton = () => { setShowAdminButton(false); };
 
     //sends the POST request to the backend
     //if the resone is status 200, the button layout is changed, and errors are set back to false
@@ -40,17 +40,17 @@ export default function Login({ setShowAdminButton, authData, setAuthData }) {
             if (res.status === 200) {
                 handleShowAdminButton();
                 setError(false);
-                error=false;
+                error = false;
                 return res.text();
-            } else{
+            } else {
                 setError(true);
-                error=true;
+                error = true;
             }
             console.log(res.status)
         })
             .then(data => {
                 if (!error) {
-                    setAuthData({...authData, token: data, usermail: loginData.usermail});
+                    setAuthData({ ...authData, token: data, usermail: loginData.usermail });
                     navigate('/admin');
                 }
             })

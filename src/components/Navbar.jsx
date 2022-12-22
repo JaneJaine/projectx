@@ -112,7 +112,7 @@ export const Navbar = ({ authData, setAuthData }) => {
     }));
     //handles the logout from the admin view
     const handleLogout = () => {
-        setAuthData({...authData, token: null, usermail: null});
+        setAuthData({ ...authData, token: null, usermail: null });
         setShowAdminButton(true);
     }
     return (

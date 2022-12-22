@@ -70,7 +70,7 @@ const MangelBox = ({
                         <Typography variant='body1'> {type} </Typography>
                     </div>
                     <div>
-                        <img src={require(`../media/reportImages/${image}`)} />
+                        <img alt='reportPicture' src={require(`../media/reportImages/${image}`)} />
                     </div>
                     <div>
                         <span> Status: {status}</span>

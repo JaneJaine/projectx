@@ -8,7 +8,7 @@ function MultiFormData({ setFiles }) {
   return (
     <div>
       <Button variant="contained">
-        <input type="file" onChange={(e) => handleFileChange(e)}/>
+        <input type="file" onChange={(e) => handleFileChange(e)} />
       </Button>
     </div>
   );

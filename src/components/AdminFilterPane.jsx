@@ -7,14 +7,14 @@ import { Box, Stack } from "@mui/material";
 import CustomButton from "./CustomButton";
 import { useEffect } from "react";
 
-export const AdminFilterPane = ({authData}) => {
+export const AdminFilterPane = ({ authData }) => {
     //array of available report types, which can be selscted in the filter
     const typeArray = ["Alle", "Defekt", "Verschmutzung", "Parkverstoß", "Anderes"];
     //list of all report objects loaded from backend
     const [mangel, setMangel] = useState([]);
     //checks if option "Alle" is selected for either Type or status
-    const[allTypeSelected, setAllTypeSelected] = useState(true)
-    const[allStatusSelected, setAllStatusSelected] = useState(true)
+    const [allTypeSelected, setAllTypeSelected] = useState(true)
+    const [allStatusSelected, setAllStatusSelected] = useState(true)
     //sets the selected filter for either tape or status
     const [selectedType, setSelectedType] = useState();
     const [selectedStatus, setSelectedStatus] = useState();
@@ -27,12 +27,12 @@ export const AdminFilterPane = ({authData}) => {
     useEffect(() => { searchAllDR(); }, []);
     //sends the GET request to the backend and saves the list of Json objects into the mangel object
     const searchAllDR = async () => {
-        const response = await fetch('http://localhost:8080/api/v1/damageReport/getAllDamageReports',{
+        const response = await fetch('http://localhost:8080/api/v1/damageReport/getAllDamageReports', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'sessiontoken': authData.token,
-                'usermail' : authData.usermail,
+                'usermail': authData.usermail,
             }
         });
         const data = await response.json();
@@ -86,7 +86,7 @@ export const AdminFilterPane = ({authData}) => {
     };
     //checks for the filter set and filters the mangel object accordingly
     const setFilter = () => {
-        if(allStatusSelected === true && allTypeSelected === true) {
+        if (allStatusSelected === true && allTypeSelected === true) {
             searchAllDR()
         }
         else if (allStatusSelected !== true && allTypeSelected === true) {
@@ -95,7 +95,7 @@ export const AdminFilterPane = ({authData}) => {
         else if (allStatusSelected === true && allTypeSelected !== true) {
             setMangel(mangel.filter((mangel) => mangel.type === selectedType))
         }
-        else  {
+        else {
             setMangel(mangel.filter((mangel) => mangel.status === selectedStatus && mangel.type === selectedType))
         }
     };
@@ -140,7 +140,7 @@ export const AdminFilterPane = ({authData}) => {
                             <CustomButton backgroundColor="#152238" color="#ffffff" buttonText="Filter" onClickFunction={setFilter} />
                             <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Rückgängig" onClickFunction={resetFilter} />
                         </Stack>
-                        
+
                     </Stack>
                     <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Neu Laden" onClickFunction={resetFilter} width="130px" marginLeft="130px" marginTop="20px" />
                 </Box >
@@ -159,7 +159,7 @@ export const AdminFilterPane = ({authData}) => {
                                     <div className="containerCard">
                                         {mangel.map((iteration_mangel) => (
                                             //dynamic
-                                            <MangelCard mangel={iteration_mangel} setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard}/>
+                                            <MangelCard mangel={iteration_mangel} setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
                                             //each loop creates a MangelCard
                                         ))}
                                     </div>
@@ -176,10 +176,10 @@ export const AdminFilterPane = ({authData}) => {
                                 <div>
                                     <MangelBox
                                         mangel={cardMangel}
-                                        setShowOneCard={setShowOneCard} 
+                                        setShowOneCard={setShowOneCard}
                                         selectedStatus={selectedStatus}
                                         changeStatus={changeStatus}
-                                        authData={authData} 
+                                        authData={authData}
                                     />
                                 </div>
                             </div>

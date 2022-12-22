@@ -11,7 +11,7 @@ export default function FormLocation({ data, setData, validationError, checkInpu
     setChecked(e.target.checked)
     setLabel(mapLabel => !mapLabel)
   }
-  
+
   return (
     <React.Fragment>
       <Typography variant="h6">
@@ -34,7 +34,7 @@ export default function FormLocation({ data, setData, validationError, checkInpu
                 variant="standard"
                 helperText={validationError.streetError ? "Bitte nicht leer lassen" : ""}
                 value={data.street}
-                onChange={(e) => { setData({ ...data, street: e.target.value }); checkInput("street", e.target.value)}}
+                onChange={(e) => { setData({ ...data, street: e.target.value }); checkInput("street", e.target.value) }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -47,7 +47,7 @@ export default function FormLocation({ data, setData, validationError, checkInpu
                 variant="standard"
                 helperText={validationError.strNrError ? "Bitte mindestens eine Nummer eingeben" : ""}
                 value={data.strNr}
-                onChange={(e) => { setData({ ...data, strNr: e.target.value }); checkInput("strNr", e.target.value)}}
+                onChange={(e) => { setData({ ...data, strNr: e.target.value }); checkInput("strNr", e.target.value) }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>

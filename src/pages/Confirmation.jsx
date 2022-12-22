@@ -1,5 +1,5 @@
 import { Typography, Grid, Button } from '@mui/material'
-import React, {useState} from 'react';
+import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { useNavigate} from 'react-router-dom';
@@ -16,9 +16,9 @@ export default function Confirmation({ success}) {
     const handleSuccess = () => {
         navigate("/");
     }
-    const handleFailure = () => {
+ /*    const handleFailure = () => {
        navigate('/report');
-    }
+    } */
     return (
         <React.Fragment>
             {success ? (

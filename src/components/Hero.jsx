@@ -3,7 +3,6 @@ import { Container } from '@mui/system';
 import React from 'react';
 import CustomButton from './CustomButton';
 import HeroImg from '../media/Frankfurt_Sky.png'
-import Navbar from './Navbar';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 
@@ -44,7 +43,7 @@ const Hero = () => {
                             <Typography variant='body2' sx={{ fontSize: "18px", color: "#5A6473", my: 4 }}>
                                 Melden Sie jetzt Defekte, Verschmutzungen oder Verstöße an die Stadt Frankfurt. Unkompliziert und schnell!
                             </Typography>
-                            <Link to="/report" style={{textDecoration: 'none'}}>
+                            <Link to="/report" style={{ textDecoration: 'none' }}>
                                 <CustomButton
                                     backgroundColor="#001BC3" color="#fff" buttonText="Hier Melden" heroBtn={true}>
                                 </CustomButton>

@@ -37,7 +37,7 @@ export default function Report() {
       case 0:
         return <FormLocation data={data} setData={setData} validationError={validationError} checkInput={checkInput} />;
       case 1:
-        return <DetailForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} files={files} setFiles={setFiles} filesNull={filesNull}/>;
+        return <DetailForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} files={files} setFiles={setFiles} filesNull={filesNull} />;
       case 2:
         return <PersonalForm data={data} setData={setData} validationError={validationError} checkInput={checkInput} />
       case 3:
@@ -52,14 +52,14 @@ export default function Report() {
     switch (activeStep) {
       case 0:
         if ((validationError.streetError || validationError.strNrError || validationError.zipError) ||
-        validationError.streetError == null || validationError.strNrError == null || validationError.zipError == null)
+          validationError.streetError == null || validationError.strNrError == null || validationError.zipError == null)
           alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
         else setActiveStep(activeStep + 1);
         break;
       case 1:
         if (validationError.descriptionError || validationError.descriptionError == null)
           alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
-        else if (files == null) {setFilesNull(true); setActiveStep(activeStep + 1);}
+        else if (files == null) { setFilesNull(true); setActiveStep(activeStep + 1); }
         else setActiveStep(activeStep + 1);
         break;
       case 2:
@@ -68,8 +68,9 @@ export default function Report() {
           alert("Bitte überprüfen Sie Ihre Eingabe und füllen Sie alle mit Stern markierten Felder aus");
         else setActiveStep(activeStep + 1);
         break;
-      default:  setActiveStep(activeStep + 1);}
-   
+      default: setActiveStep(activeStep + 1);
+    }
+
   };
   const handleBack = () => {
     setActiveStep(activeStep - 1);

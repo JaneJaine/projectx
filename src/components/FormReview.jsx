@@ -20,8 +20,8 @@ export default function Review({ data, setSubmitData, submitData }) {
   const userName = data.firstname + ' ' + data.lastname;
   //automatically sets the submit data on load of the component
   useEffect(() => {
-    setSubmitData({ ...submitData, location: location, type: data.type, description: data.description, userMail: data.email, userName: userName  })
-  },[])
+    setSubmitData({ ...submitData, location: location, type: data.type, description: data.description, userMail: data.email, userName: userName })
+  }, [])
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

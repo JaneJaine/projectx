@@ -20,7 +20,7 @@ const MangelCard = ({ mangel: { id, type, status, username, usermail, descriptio
             </div>
             <div>
                 {/* /Users/lucaisaak/projectx/src/components/images/${image} */}
-                <img src={require(`../media/reportImages/${image}`)} />
+                <img alt='reportPicture' src={require(`../media/reportImages/${image}`)} />
             </div>
             <div>
                 <Typography variant='heading3'> {description}</Typography>
