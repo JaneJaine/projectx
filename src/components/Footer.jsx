@@ -6,7 +6,9 @@ import fbIcon from "../media/fbicon.png";
 import twitterIcon from "../media/twittericon.png";
 import linkedinIcon from "../media/linkedinicon.png";
 
+//creates a footer element with basic functions
 const Footer = () => {
+    //sets the styling for the footer element
     const CustomContainer = styled(Container)(({ theme }) => ({
         display: "flex",
         justifyContent: "space-around",
@@ -16,7 +18,7 @@ const Footer = () => {
             textAlign: "center",
         },
     }));
-
+    //box to display the social media icons
     const IconBox = styled(Box)(({ theme }) => ({
         display: "flex",
         alignItems: "center",
@@ -25,7 +27,7 @@ const Footer = () => {
             justifyContent: "center",
         },
     }));
-
+    //sets the styling for the Link elements
     const FooterLink = styled("span")(({ theme }) => ({
         fontSize: "16px",
         color: "#7A7A7E",

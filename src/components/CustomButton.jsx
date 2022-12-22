@@ -1,7 +1,9 @@
 import {Button, styled} from '@mui/material';
 import React from 'react';
 
+//creates a button component with custom styling, wich is the main button used in the UI
 const CustomButton = ({backgroundColor, color, buttonText, heroBtn, guideBtn, getStartedBtn, onClickFunction, marginTop, marginLeft, minWidth, width}) => {
+    //styled components is used to create custom components
     const CustomButton = styled(Button)(({theme}) => ({
         backgroundColor: backgroundColor,
         color: color,
