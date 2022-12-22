@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 export class NoMatch extends Component {
+  //shown when navigation fails or the user navigates to a page that does not exist
   render() {
     return (
       <React.Fragment>

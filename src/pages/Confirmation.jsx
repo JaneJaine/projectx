@@ -4,7 +4,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { useNavigate} from 'react-router-dom';
 
-export default function Confirmation({ success, data }) {
+export default function Confirmation({ success}) {
+    //shown after the report is send to the backend
+    //can navigate back to the home page
+    //to-do: if error during request processing - possiblity to navigate back to report and change data
+    //for this, the data object should be moved from the report to the app component
+    //and from there passed on to the report
+    //by doing this, the data object does not get lost when reloading the report and can be set on load
+    //this enable the user to change data, even when reloading the page
     const navigate = useNavigate();
     const handleSuccess = () => {
         navigate("/");
@@ -12,13 +19,6 @@ export default function Confirmation({ success, data }) {
     const handleFailure = () => {
        navigate('/report');
     }
-    const [submitData, setSubmitData] = useState({
-        location: '',
-        type: '',
-        description: '',
-        userMail: '',
-        userName: '',
-      });
     return (
         <React.Fragment>
             {success ? (

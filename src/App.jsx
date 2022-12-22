@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import { Box } from '@mui/material';
 
 function App() {
+  //saves the session token and user mail to authenticate backend requests in the admin view
   const [authData, setAuthData] = useState({
     token: null,
     usermail: null
