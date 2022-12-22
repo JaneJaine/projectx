@@ -3,7 +3,14 @@ import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from 'react-leaf
 import { Typography } from '@mui/material';
 
 export default function MapView({ data, setData }) {
+  //sets the initial position of the map, and provides the update function for the position
+  const [position, setPosition] = useState([49.47968, 8.46982])
+  //component used for the auto-location of the user
   function LocationMarker() {
+    //locates to user onClick
+    //if the locator works, the position is set and the map zooms on the found location
+    //then the location is set in the data object to be send to the backend later
+    //if no location is found, an error is shown in the alert box
     const map = useMapEvents({
       click() {
         map.locate()
@@ -23,7 +30,6 @@ export default function MapView({ data, setData }) {
       </Marker>
     )
   }
-  const [position, setPosition] = useState([49.47968, 8.46982])
 
   return (
     <React.Fragment>

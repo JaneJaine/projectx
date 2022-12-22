@@ -21,12 +21,14 @@ import Login from "./Login";
 import CustomButton from "./CustomButton";
 
 export const Navbar = ({ authData, setAuthData }) => {
+    //sets the NavBar to mobile or desktop view
     const [mobileMenu, setMobileMenu] = useState({
         left: false,
     });
-
+    //used to either show the login or logout button
     const [showAdminButton, setShowAdminButton] = useState(true);
-
+    //function is called to show the nav menu in mobile view
+    //if clicked, the drawer will open and show the navigation options
     const toggleDrawer = (anchor, open) => (event) => {
         if (
             event.type === "keydown" &&
@@ -34,10 +36,9 @@ export const Navbar = ({ authData, setAuthData }) => {
         ) {
             return;
         }
-
         setMobileMenu({ ...mobileMenu, [anchor]: open });
     };
-
+    //loads the UI of the mobile view navbar
     const list = (anchor) => (
         <Box
             sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -63,7 +64,7 @@ export const Navbar = ({ authData, setAuthData }) => {
             </List>
         </Box>
     );
-
+    //styled custom component for the links in the navigation bar
     const NavLink = styled(Typography)(() => ({
         fontSize: "14px",
         color: "#4F5361",
@@ -73,7 +74,7 @@ export const Navbar = ({ authData, setAuthData }) => {
             color: "#0F1B4C",
         },
     }));
-
+    //custom component in which the links are loaded
     const NavbarLinksBox = styled(Box)(({ theme }) => ({
         display: "flex",
         alignItems: "center",
@@ -83,7 +84,7 @@ export const Navbar = ({ authData, setAuthData }) => {
             display: "none",
         },
     }));
-
+    //custom component for the menu icons in the mobile view
     const CustomMenuIcon = styled(MenuIcon)(({ theme }) => ({
         cursor: "pointer",
         display: "none",
@@ -92,7 +93,7 @@ export const Navbar = ({ authData, setAuthData }) => {
             display: "block",
         },
     }));
-
+    //sets the styling for the navbar component
     const NavbarContainer = styled(Container)(({ theme }) => ({
         backgroundColor: "#E6F0FF",
         display: "flex",
@@ -103,13 +104,13 @@ export const Navbar = ({ authData, setAuthData }) => {
             padding: theme.spacing(2),
         },
     }));
-
+    //sets the styling for the logo
     const NavbarLogo = styled("img")(({ theme }) => ({
         [theme.breakpoints.down("md")]: {
             display: "none",
         },
     }));
-
+    //handles the logout from the admin view
     const handleLogout = () => {
         setAuthData({...authData, token: null, usermail: null});
         setShowAdminButton(true);

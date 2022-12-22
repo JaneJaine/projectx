@@ -1,10 +1,11 @@
 import React from 'react';
 import CustomButton from './CustomButton';
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import AdminFilter from './AdminFilter';
 const MangelBox = ({
     mangel: { id, type, status, username, usermail, description, image, location }, setShowOneCard, selectedStatus,
     changeStatus, searchAllDR, authData }) => {
+    //objects to save the new object, which is then send to the backend in the PUT request
     const data = {
         id: id,
         type: type,
@@ -15,9 +16,11 @@ const MangelBox = ({
         image: image,
         location: location
     }
+    //sets the selected status
     const changeStatusCall = (e) => {
         changeStatus(e)
     }
+    //sends the report object with the changed status to the backend
     const changeStatusBackend = () => {
         fetch(`http://localhost:8080/api/v1/damageReport/updateDamageReport/${id}`, {
             method: 'PUT',
@@ -36,6 +39,7 @@ const MangelBox = ({
             })
         searchAllDR()
     };
+    //sends the delete request to the backend
     const deleteReportById = () => {
         fetch(`http://localhost:8080/api/v1/damageReport/deleteDamageReportById/${id}`, {
             method: 'DELETE',
@@ -54,6 +58,7 @@ const MangelBox = ({
             })
         searchAllDR()
     };
+    //closes the single view
     const showOneMangelFalse = () => {
         setShowOneCard(false)
     }
@@ -62,16 +67,16 @@ const MangelBox = ({
             <div className='container'>
                 <div className="mangelBox" key={id}>
                     <div>
-                        <p> {type} </p>
+                        <Typography variant='body1'> {type} </Typography>
                     </div>
                     <div>
                         <img src={require(`../media/reportImages/${image}`)} />
                     </div>
                     <div>
                         <span> Status: {status}</span>
-                        <h3> Description: {description}</h3>
-                        <h3> {location}</h3>
-                        <h3>{status}</h3>
+                        <Typography variant='heading3'> Description: {description}</Typography>
+                        <Typography variant='heading3'> {location}</Typography>
+                        <Typography variant='heading3'>{status}</Typography>
                     </div>
                 </div>
                 <div>

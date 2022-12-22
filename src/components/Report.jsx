@@ -98,12 +98,15 @@ export default function Report() {
   }
   //sets the success variable to indicate success of post request to backend
   const [success, setSuccess] = useState(null);
-  //handles the sending of post request to backend and response validation
+  //creates a new FormData object, which is needed to send files along with Json data to the backend
   const requestData = new FormData();
+  //files object, which is set in the MultiFile component loaded in the detailForm
   const [files, setFiles] = useState();
+  //handles the sending of post request to backend and response validation
   const sendData = () => {
-    
+    //appends the file to the request data
     requestData.append("file", files);
+    //creates the final report object, which will be send to backend
     const jsonData = {
       location: submitData.location,
       type: submitData.type,
@@ -111,12 +114,13 @@ export default function Report() {
       usermail: submitData.userMail,
       username: submitData.userName,
     };
-
+    //appends the damagereport object to the FormData, and sets the content type of the boundary to json
     requestData.append("damagereport", new Blob([JSON.stringify(jsonData)], {
       type: 'application/json'
     }));
-    console.log(requestData.get("file"))
-
+    //POST request to the backend
+    //if status is 200, success variable is set to true, else to false
+    //then the confirmation page is loaded, according to the success variable
     fetch('http://localhost:8080/api/v1/damageReport/addDamageReport', {
       method: 'POST',
       body: requestData,
@@ -195,6 +199,7 @@ export default function Report() {
         break;
     }
   }
+  //is set during the RegEx user input check, and used in the loaded components to show errors and helper texts
   const [validationError, setValidationError] = useState({
     streetError: null,
     strNrError: null,

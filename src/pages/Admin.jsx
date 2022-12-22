@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Box } from '@mui/material';
 import AdminFilter from '../components/AdminFilter';
-import NavbarAdmin from '../components/NavbarAdmin';
 import SearchBarAsynchronous from '../components/AsynchronousSerachBar';
 import { ColorLens, SportsRugbySharp } from '@mui/icons-material';
 import { Stack } from '@mui/system';

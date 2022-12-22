@@ -1,12 +1,10 @@
 import { Button } from "@mui/material";
 import React, { useEffect } from "react";
-function MultiFormData({ files, setFiles, filesNull }) {
-
+function MultiFormData({ setFiles }) {
+  //handles the file input and saves it in the files element
   const handleFileChange = (e) => {
     setFiles(e.target.files[0])
-    console.log(files)
   }
-    
   return (
     <div>
       <Button variant="contained">
