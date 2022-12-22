@@ -20,7 +20,7 @@ import {
 import Login from "./Login";
 import CustomButton from "./CustomButton";
 
-export const Navbar = ({ token, setToken }) => {
+export const Navbar = ({ authData, setAuthData }) => {
     const [mobileMenu, setMobileMenu] = useState({
         left: false,
     });
@@ -111,7 +111,7 @@ export const Navbar = ({ token, setToken }) => {
     }));
 
     const handleLogout = () => {
-        setToken(null);
+        setAuthData({...authData, token: null, usermail: null});
         setShowAdminButton(true);
     }
     return (
@@ -157,7 +157,7 @@ export const Navbar = ({ token, setToken }) => {
                     gap: "1rem",
                 }}>
                 {(showAdminButton) ? (
-                    <Login setShowAdminButton={setShowAdminButton} token={token} setToken={setToken} />
+                    <Login setShowAdminButton={setShowAdminButton} authData={authData} setAuthData={setAuthData} />
                 ) : (
                     <React.Fragment>
                         <Link to="/" style={{ textDecoration: 'none' }}>

@@ -11,17 +11,20 @@ import Navbar from './components/Navbar';
 import { Box } from '@mui/material';
 
 function App() {
-  const [token, setToken] = useState(null);
+  const [authData, setAuthData] = useState({
+    token: null,
+    usermail: null
+  });
   return (
     <React.Fragment>
       <Box sx={{ backgroundColor: "#E6F0FF" }}>
         <BrowserRouter>
-          <Navbar token={token} setToken={setToken} />
+          <Navbar authData={authData} setAuthData={setAuthData} />
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
             <Route path="/report" element={<ReportPage />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<Admin token={token} />} />
+            <Route path="/admin" element={<Admin authData={authData} />} />
             <Route path="/confirmation" element={<Confirmation />} />
             <Route path="/impressum" element={<Confirmation />} />
             <Route element={<NoMatch />}></Route>

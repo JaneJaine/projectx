@@ -10,7 +10,7 @@ import CustomButton from "./CustomButton";
 import { useEffect } from "react";
 import { CenterFocusStrong } from "@mui/icons-material";
 
-export const AdminFilterPane = () => {
+export const AdminFilterPane = ({authData}) => {
 
     const typeArray = ["Alle", "Defekt", "Verschmutzung", "Parkverstoß", "Anderes"];
     useEffect(() => { searchAllDR(); }, []);
@@ -126,44 +126,34 @@ export const AdminFilterPane = () => {
     const setFilter = () => {
         console.log("Willkommen im SetFilter")
         if(allStatusSelected === true && allTypeSelected === true) {
-            console.log("Hallo in der 1. If abfrage")
             searchAllDR()
-
         }
-
         else if (allStatusSelected !== true && allTypeSelected === true) {
             setMangel(mangel.filter((mangel) => mangel.status === selectedStatus))
-            console.log("Hallo in der 2. If abfrage")
-
         }
-
         else if (allStatusSelected === true && allTypeSelected !== true) {
             setMangel(mangel.filter((mangel) => mangel.type === selectedType))
-            console.log("Hallo in der 3. If abfrage")
-
         }
         else  {
             
             setMangel(mangel.filter((mangel) => mangel.status === selectedStatus && mangel.type === selectedType))
-            console.log("Hallo in der 4. If abfrage")
-
         }
-      
     };
 
-
-
-
-
     const searchAllDR = async () => {
-        const response = await fetch('http://localhost:8080/api/v1/damageReport/getAllDamageReports');
+        console.log("Token: " + authData.token);
+        console.log("Mail: " + authData.usermail)
+        const response = await fetch('http://localhost:8080/api/v1/damageReport/getAllDamageReports',{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'sessiontoken': authData.token,
+                'usermail' : authData.usermail,
+            }
+        });
         const data = await response.json();
-        console.log(data)
-
         setMangel(data)
-
     }
-
     return (
         <React.Fragment>
             <Box sx=
@@ -192,25 +182,17 @@ export const AdminFilterPane = () => {
                 }}> <Stack spacing={7}>
                         <Stack spacing={5}>
                             <h1 >Admin View </h1>
-
-
                             <AdminFilter filterItems={typeArray}
                                 dropDownName="Mangelart"
                                 defaultItem={selectedType}
                                 onChangeFunction={changeType}
                             />
-
-
                             <AdminFilter filterItems={["Alle", "Nicht bearbeitet", "In Bearbeitung", "Fertig"]}
                                 dropDownName="Status"
                                 defaultItem={selectedStatus}
                                 onChangeFunction={changeStatus} />
-
                             {/* <SearchBarAsynchronous onChangeFunction={setSelectedPlz} /> */}
-
-
                         </Stack>
-
                         <Stack spacing={1}>
                             <CustomButton backgroundColor="#152238" color="#ffffff" buttonText="Filter" onClickFunction={setFilter} />
                             <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Rückgängig" onClickFunction={resetFilter} />
@@ -218,9 +200,7 @@ export const AdminFilterPane = () => {
                         
                     </Stack>
                     <CustomButton backgroundColor="#957DAD" color="#ffffff" buttonText="Neu Laden" onClickFunction={resetFilter} width="130px" marginLeft="130px" marginTop="20px" />
-                  
                 </Box >
-
                 <Box sx=
                     {{
                         backgroundColor: "#152238",
@@ -228,8 +208,6 @@ export const AdminFilterPane = () => {
                         maxWidth: 1361,
                         width: 1361,
                         flexDirection: "row"
-
-
                     }}>
                     {(showOneCard === false) ? (
                         <div>
@@ -238,7 +216,7 @@ export const AdminFilterPane = () => {
                                     <div className="containerCard">
                                         {mangel.map((iteration_mangel) => (
                                             //dynamic
-                                            <MangelCard mangel={iteration_mangel} setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard} />
+                                            <MangelCard mangel={iteration_mangel} setCardMangel={setCardMangel} cardMangel={cardMangel} setShowOneCard={setShowOneCard} showOneCard={showOneCard}/>
                                             //each loop creates a MangelCard
                                         ))}
                                     </div>
@@ -250,9 +228,7 @@ export const AdminFilterPane = () => {
                             }
                         </div>
                     ) : (
-
                         <div>
-
                             <div className="containerCard">
                                 <div>
                                     <MangelBox
@@ -260,22 +236,14 @@ export const AdminFilterPane = () => {
                                         setShowOneCard={setShowOneCard} showOneCard={showOneCard}
                                         selectedStatus={selectedStatus}
                                         changeStatus={changeStatus}
+                                        authData={authData} 
                                     />
                                 </div>
-
                             </div>
-
                         </div>
-
-
-
-
-
                     )
                     }
-
                 </Box>
-
             </Box>
         </React.Fragment >
     );

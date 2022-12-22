@@ -2,14 +2,10 @@ import React from 'react';
 import CustomButton from './CustomButton';
 import { Box } from "@mui/material";
 import AdminFilter from './AdminFilter';
-
-
-
-
 const MangelBox = ({
     mangel: { id, type, status, username, usermail, description, image, location },
     onClickBearbeitenFunction, setCardMangel, cardMangel, setShowOneCard, selectedStatus,
-    changeStatus, searchAllDR }) => {
+    changeStatus, searchAllDR, authData }) => {
 
     const data = {
         id: id,
@@ -21,19 +17,16 @@ const MangelBox = ({
         image: image,
         location: location
     }
-
     const changeStatusCall = (e) => {
         changeStatus(e)
-
-
     }
-
     const changeStatusBackend = () => {
-
         fetch(`http://localhost:8080/api/v1/damageReport/updateDamageReport/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                'sessiontoken': authData.token,
+                'usermail': authData.usermail
             },
             body: JSON.stringify(data)
         })
@@ -44,20 +37,14 @@ const MangelBox = ({
                 console.error('Error:', error)
             })
         searchAllDR()
-
-        console.log('Description: ' + description)
-        console.log('usermail: ' + usermail)
-
     };
-
-    const idDelete = "8fa212bb-1815-41c1-8a07-af47afbea1cc"
-
     const deleteReportById = () => {
-
         fetch(`http://localhost:8080/api/v1/damageReport/deleteDamageReportById/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
+                'sessiontoken': authData.token,
+                'usermail': authData.usermail,
             },
             body: JSON.stringify(data)
         })
@@ -68,33 +55,20 @@ const MangelBox = ({
                 console.error('Error:', error)
             })
         searchAllDR()
-
-        console.log('Description: ' + description)
-        console.log('usermail: ' + usermail)
-
     };
-
-    
     const showOneMangelFalse = () => {
         setShowOneCard(false)
-        console.log("showOneMangelFalse läuft")
-        console.log(cardMangel)
-
     }
     return (
-
         <div className='containerCard'>
             <div className='container'>
                 <div className="mangelBox" key={id}>
                     <div>
                         <p> {type} </p>
                     </div>
-
                     <div>
-                        <img src={require(`/Users/lucaisaak/projectx/src/components/images/${image}`)} />
-
+                        <img src={require(`../media/reportImages/${image}`)} />
                     </div>
-
                     <div>
                         <span> Status: {status}</span>
                         <h3> Description: {description}</h3>
@@ -108,8 +82,6 @@ const MangelBox = ({
                 </div>
             </div>
             <div>
-
-
                 <Box
                     sx={{
                         borderRadius: "9px",
@@ -122,8 +94,6 @@ const MangelBox = ({
                         justifyContent: "center",
                         '&:hover': {
                             backgroundColor: '#D3E4F6',
-
-
                         },
                     }}
                 >
@@ -139,11 +109,6 @@ const MangelBox = ({
                     <CustomButton backgroundColor="#957DAD" color="#ffffff" marginTop="5px"
                         buttonText="Meldung Löschen" onClickFunction={deleteReportById} minWidth={170} marginLeft="4px" />
                 </Box>
-
-
-
-
-
             </div>
         </div>
 

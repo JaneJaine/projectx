@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import CustomButton from "./CustomButton";
 import { useNavigate } from 'react-router-dom';
 
-export default function Login({ setShowAdminButton, token, setToken }) {
+export default function Login({ setShowAdminButton, authData, setAuthData }) {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
 
@@ -36,7 +36,7 @@ export default function Login({ setShowAdminButton, token, setToken }) {
         })
             .then(data => {
                 if (!error) {
-                    setToken(data);
+                    setAuthData({...authData, token: data, usermail: loginData.usermail});
                     navigate('/admin');
                 }
             })

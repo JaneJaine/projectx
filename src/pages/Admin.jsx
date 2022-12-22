@@ -25,7 +25,7 @@ export class ReportPage extends Component {
                     flexDirection: 'column'
                 }}>
                 
-                    <AdminFilterPane/>
+                    <AdminFilterPane authData={this.props.authData}/>
                 </Box>
             </React.Fragment>
         )
