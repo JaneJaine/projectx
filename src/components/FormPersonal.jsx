@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
 export default function FormPersonal({ data, setData, validationError, checkInput }) {
-
+//component in which the user can input the personal data
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

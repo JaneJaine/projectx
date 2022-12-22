@@ -11,8 +11,14 @@ import { useEffect } from 'react';
 
 
 export default function Review({ data, setSubmitData, submitData }) {
+  //component which shows a summary of the data submitted to the form
+  //in here, the data from the user is put together to the submit data
+  //this will then be send in the POST request in the report component
+
+  //username and location need to be put together from several input variables
   const location = data.coordinates ? data.coordinates : data.street + ' ' + data.strNr + ', ' + data.zip;
   const userName = data.firstname + ' ' + data.lastname;
+  //automatically sets the submit data on load of the component
   useEffect(() => {
     setSubmitData({ ...submitData, location: location, type: data.type, description: data.description, userMail: data.email, userName: userName  })
   },[])

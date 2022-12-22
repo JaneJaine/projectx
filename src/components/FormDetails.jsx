@@ -3,9 +3,11 @@ import { Autocomplete, TextField, Typography, Grid, Button } from '@mui/material
 import MultiFormData from './MultiFormData';
 
 export default function AddressForm({ data, setData, validationError, checkInput, files, setFiles, filesNull }) {
+  //list with available options for the type a report can have
   const detailOptions = [
     'Defekt', 'Verschmutzung', 'Parkverstoß', 'Anderes'
   ]
+  //needed to controll the Autocomplete component, gets set on change
   const [inputValue, setInputValue] = useState('');
 
   return (

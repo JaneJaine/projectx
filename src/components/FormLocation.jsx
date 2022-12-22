@@ -4,10 +4,9 @@ import MapView from './MapView';
 
 export default function FormLocation({ data, setData, validationError, checkInput }) {
 
+  //handles the change of the switch component, sets the label and content accordingly
   const [checked, setChecked] = useState(false);
   const [mapLabel, setLabel] = useState(true);
-  const zipFrank = ["60306","60308","60310","60311","60312","60313","60314","60316","60318","60320","60322","60323","60325","60326","60327","60329","60385","60386","60388","60389","60431","60433","60435","60437","60438","60439","60486","60487","60488","60489","60528","60529","60549","60594","60596","60598","60599","65929","65931","65933","65934","65936","61352"]
-
   const handleChange = (e) => {
     setChecked(e.target.checked)
     setLabel(mapLabel => !mapLabel)
